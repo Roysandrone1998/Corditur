@@ -36,3 +36,5 @@ server/src/uploads/
 .idea/
 .DS_Store
 Thumbs.db
+
+uploads/
