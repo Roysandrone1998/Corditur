@@ -1,0 +1,86 @@
+/* ===== Full-bleed background azul en TODA la página ===== */
+html, body { margin: 0; height: 100%; }
+
+.inter-page{
+  min-height: 100vh;
+  min-height: 100svh;
+  background: radial-gradient(120% 120% at 100% 0%, #1e5bd7 0%, #3867d6 35%, #204080 80%);
+  /* rompe wrappers con max-width para que el fondo sea full */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* ===== Hero ===== */
+.inter-hero{
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+}
+.inter-hero::after{
+  content: "";
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 60%;
+  background: radial-gradient(40% 40% at 30% 30%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+  pointer-events: none;
+}
+.inter-title{
+  letter-spacing: .5px;
+}
+.inter-sub{
+  opacity: .95;
+}
+
+/* ===== Carruseles (look Figma) ===== */
+.hc-card{
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0b1b4a; /* fallback bajo la imagen */
+  border: 1px solid rgba(255,255,255,.35);
+  box-shadow: 0 14px 26px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.2);
+}
+.hc-img{
+  width: 100%;
+  height: 530px;          /* como en tu captura */
+  object-fit: cover;
+  display: block;
+}
+.hc-card--small .hc-img{
+  height: 530px;          /* preview misma altura que el grande en desktop */
+}
+
+.hc-gradient{
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 35%;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%,
+                                       rgba(0,0,0,.35) 60%,
+                                       rgba(0,0,0,.6) 100%);
+  pointer-events: none;
+}
+
+/* Botones redondos */
+.hc-btn{
+  position: absolute;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 0;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,.95);
+  color: #2b2b2b;
+  box-shadow: 0 6px 16px rgba(0,0,0,.18);
+  cursor: pointer;
+}
+.hc-prev{ left: 14px; top: 50%; transform: translateY(-50%); }
+.hc-next{ right: 14px; top: 50%; transform: translateY(-50%); }
+.hc-next-only{ right: 14px; bottom: 14px; }
+
+.hc-btn:active{ transform: scale(.96) translateY(-50%); }
+.hc-card--small .hc-btn:active{ transform: scale(.96); }
+
+/* Responsive */
+@media (max-width: 991.98px){
+  .hc-img{ height: 320px; }
+  .hc-card--small{ display: none; } /* ocultamos preview en móvil */
+}

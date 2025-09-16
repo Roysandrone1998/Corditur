@@ -1,0 +1,223 @@
+:root{
+  --deep:#253C70; --mid:#3A5DAE; --light:#7BA3FF; --w:#fff;
+}
+
+/* ===== Fondo azul en TODA la página (full-bleed) ===== */
+html, body { margin:0; height:100%; }
+
+.eg-page{
+  background: radial-gradient(120% 120% at 100% 0%, #1E5BD7 0%, #3867D6 35%, #204080 80%);
+  min-height: 100vh;
+  min-height: 100svh;
+  color: var(--w);
+
+  /* rompe wrappers con max-width para que el fondo ocupe todo */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* ===== HERO ===== */
+.eg-hero{ padding: 64px 0 48px; }
+.eg-hero .container{ max-width: 1080px; }
+
+.eg-hero-card{
+  position: relative;
+  border-radius: 22px;
+   overflow: visible;
+
+  /* Eliminamos lo que generaba el efecto de "box" en los lados */
+  box-shadow: none;              /* antes: 0 18px 40px ... */
+  border: 0;                     /* antes: 1px solid rgba(255,255,255,.25) */
+  background: transparent;       /* antes: #0b1b4a (se veía si la imagen no llenaba) */
+
+  /* IMPORTANTE: sin height fija; deja que la imagen defina el alto */
+  height: auto;
+}
+
+/* La imagen vuelve a flujo normal para que se vea completa */
+.eg-hero-img{
+  position: relative;            /* antes: absolute */
+  inset: auto;                   /* resetea el absolute si quedó */
+  width: 100%;
+  height: auto;                  /* muestra la foto completa, sin recorte */
+  display: block;
+
+  /* object-fit ya no es necesario al no fijar height;
+     si igual lo querés por seguridad: */
+  object-fit: contain;           /* NO recorta; puede dejar “letterbox” si la proporción no coincide */
+  z-index: 0;
+}
+
+
+/* PNG superpuesto (reemplaza "It's fun") */
+.eg-sticker{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(-1 * clamp(19px, 22.5vw, 109px));
+    height: clamp(103px, 52vw, 401px);
+    z-index: 5;
+    pointer-events: none;
+}
+/* Título centrado dentro de la foto */
+.eg-hero-mid{
+  position: absolute; bottom: 86px; left: 50%; transform: translateX(-50%);
+  margin: 0; text-align: center;
+  font-weight: 900; text-transform: uppercase; letter-spacing: .6px;
+  font-size: clamp(1.1rem, 1.4vw + 1rem, 1.8rem);
+  text-shadow: 0 2px 12px rgba(0,0,0,.35);
+  z-index: 2;
+      color: white;
+      font-size: 1.5rem;
+}
+
+/* Cajita blanca translúcida abajo de la foto */
+.eg-hero-bottom {
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(88%, 720px);
+    background: linear-gradient(181deg, #ffffff, transparent);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(0, 0, 0, .08);
+    border-radius: 14px;
+    color: #1a244a;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .18);
+    padding: 10px 14px;
+    text-align: center;
+    font-size: 19px;
+    line-height: 1.25;
+    z-index: 2;
+}
+
+/* ===== CONTENIDO LISTADO ===== */
+.eg-content{ padding: 40px 0 28px; }
+.eg-title{
+  font-weight: 900; letter-spacing: .6px; text-transform: uppercase;
+  margin: 0 0 16px;
+}
+
+/* Bloques (icono redondo + textos) */
+.eg-block{
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  column-gap: 12px; row-gap: 6px;
+  margin-bottom: 22px;
+}
+.eg-icon{
+  width: 40px; height: 40px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: linear-gradient(180deg, var(--light), #5e86ff);
+  color: #0f1f4a;
+  box-shadow: 0 6px 14px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.45);
+}
+.eg-icon svg{ width: 22px; height: 22px; }
+
+.eg-texts h4{
+  margin: 0; font-weight: 900; text-transform: uppercase; letter-spacing: .4px;
+}
+.eg-texts p{
+  margin: 2px 0; line-height: 1.35; color: rgba(255,255,255,.95);
+}
+.eg-texts p + p{ margin-top: 4px; }
+.eg-texts strong{ color:#fff; font-weight: 900; }
+
+/* sublista */
+.eg-sublist{ list-style: none; padding-left: 0; margin: 6px 0 0; }
+.eg-sublist li{
+  position: relative; padding-left: 16px; margin: 2px 0; color: rgba(255,255,255,.95);
+}
+.eg-sublist li::before{
+  content:""; position:absolute; left:0; top:.58em;
+  width:6px; height:6px; border-radius: 50%; background:#fff;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 992px){
+  .eg-hero-card{ height: 420px; }
+  .eg-hero-mid{ bottom: 78px; }
+}
+@media (max-width: 576px){
+  .eg-hero-card{ height: 340px; }
+  .eg-sticker{ height: clamp(40px, 10vw, 70px); top: 14px; }
+  .eg-hero-mid{ font-size: 1rem; bottom: 70px; }
+  .eg-hero-bottom{ width: 92%; }
+}
+/* --- aseguramos que el hero NO recorte por media queries --- */
+@media (max-width: 992px){ .eg-hero-card{ height:auto; } }
+@media (max-width: 576px){ .eg-hero-card{ height:auto; } }
+
+/* ===== Subtítulo y descripción del bloque KIT ===== */
+.eg-subtitle{
+  font-weight: 900; text-transform: uppercase; letter-spacing: .5px;
+  margin: 18px 0 6px;
+}
+.eg-subdesc{ margin: 0 0 14px; color: rgba(255,255,255,.92); }
+
+/* ===== Card de KIT (borde + sombra suave) ===== */
+.eg-kit-card{
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.30);
+  box-shadow: 0 14px 28px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.25);
+  background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+  max-width: 680px;
+}
+.eg-kit-img{
+  display:block; width:100%; height:auto; object-fit: cover;
+}
+
+/* ===== Botones tipo píldora debajo del KIT ===== */
+.eg-kit-actions{
+  display: flex; gap: 12px; flex-wrap: wrap;
+  align-items: center; justify-content: center;
+  margin: 12px 0 22px;
+}
+.eg-pill{
+  display: inline-block;
+  border-radius: 999px;
+  padding: .55rem 1.1rem;
+  font-weight: 800; letter-spacing: .2px;
+  background: linear-gradient(180deg, #ffffff, #e9f0ff);
+  color: #1b2b5a; text-decoration: none;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 10px 18px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.65);
+}
+.eg-pill:hover{ filter: brightness(.98); }
+
+/* ===== Carrusel inferior (estilo Figma) ===== */
+.egc-wrap{ margin: 10px 0 24px; }
+.egc-card{
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.35);
+  box-shadow: 0 14px 26px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.2);
+  background: #0b1b4a;     /* fallback */
+}
+.egc-img{
+  width: 100%; height: 530px; object-fit: cover; display: block;
+}
+.egc-grad{
+  position: absolute; left:0; right:0; bottom:0; height:35%;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%,
+                                       rgba(0,0,0,.35) 60%,
+                                       rgba(0,0,0,.6) 100%);
+  pointer-events:none;
+}
+.egc-btn{
+  position: absolute; width: 44px; height: 44px;
+  border-radius: 50%; border:0; display:grid; place-items:center;
+  background: rgba(255,255,255,.95); color:#2b2b2b;
+  box-shadow: 0 6px 16px rgba(0,0,0,.18); cursor: pointer;
+}
+.egc-prev{ left: 14px; top: 50%; transform: translateY(-50%); }
+.egc-next{ right: 14px; top: 50%; transform: translateY(-50%); }
+.egc-btn:active{ transform: scale(.96) translateY(-50%); }
+
+/* Responsive: solo ajusto alto */
+@media (max-width: 991.98px){ .egc-img{ height: 320px; } }

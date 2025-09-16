@@ -1,47 +1,89 @@
-import { useEffect, useState } from 'react';
-import { api } from '../api/axios';
-
+import { Link } from "react-router-dom";
+import "../css/home.css";
 export default function Home() {
-    const [viajes, setViajes] = useState([]);
-
-    useEffect(() => {
-        (async () => {
-        try {
-            const { data } = await api.get('/viajes');
-            setViajes(data);
-        } catch {
-            setViajes([]);
-        }
-        })();
-    }, []);
-
     return (
-        <>
-        <h2 className="mb-3">Próximos viajes</h2>
-        <div className="row g-3">
-            {viajes.map(v => (
-            <div className="col-12 col-md-6 col-lg-4" key={v._id}>
-                <div className="card h-100 shadow-sm">
-                {v.urls_imagenes?.[0] && <img src={v.urls_imagenes[0]} className="card-img-top" alt={v.titulo} />}
-                <div className="card-body">
-                    <h5 className="card-title">{v.titulo}</h5>
-                    {v.destino && <p className="mb-1"><strong>Destino:</strong> {v.destino}</p>}
-                    {v.precio != null && <p className="mb-1"><strong>Precio:</strong> {v.precio} {v.moneda}</p>}
-                    {v.pdf_itinerario && (
-                    <a className="btn btn-sm btn-outline-secondary mt-2" href={v.pdf_itinerario} download>
-                        Descargar itinerario (PDF)
-                    </a>
-                    )}
-                </div>
-                </div>
+         <main className="home-page">   {/* 👈 wrapper con fondo azul */}
+        {/* HERO */}
+        <section className="home-hero text-white text-center">
+            <div className="container py-5">
+            <h1 className="display-5 fw-bold">VIVÍ TU PRÓXIMO VIAJE CON CORDITUR</h1>
+            <p className="lead mt-3 mb-0">
+                Desde experiencias educativas hasta el viaje de tus sueños.
+                Conectamos destinos, personas y recuerdos.
+            </p>
             </div>
-            ))}
-            {!viajes.length && (
-            <div className="col-12">
-                <div className="alert alert-info">Sin viajes publicados aún.</div>
-            </div>
-            )}
+        </section>
+{/* TRES CARDS */}
+<section className="container my-5">
+  <div className="row g-4">
+    {/* Card 1 */}
+    <div className="col-12 col-md-4">
+      <article className="home-card">
+        <div className="home-card-head">
+          <h5>INDIVIDUALES</h5>
+          <p>Viajes únicos. Vos elegís el destino, nosotros lo hacemos posible.</p>
         </div>
-        </>
+        <img
+          className="home-card-img"
+          src="/images/internacionales.jpg"
+          alt="Viajes individuales"
+        />
+      </article>
+      <div className="text-center mt-2">
+        <Link to="/internacionales" className="btn home-pill">CONOCÉ MÁS</Link>
+      </div>
+    </div>
+
+    {/* Card 2 */}
+    <div className="col-12 col-md-4">
+      <article className="home-card">
+        <div className="home-card-head">
+          <h5>EGRESADOS</h5>
+          <p>El viaje que nunca se olvida. Diversión, organización y seguridad.</p>
+        </div>
+        <img
+          className="home-card-img"
+          src="/images/egresados.jpg"
+          alt="Viajes de egresados"
+        />
+      </article>
+      <div className="text-center mt-2">
+        <Link to="/egresados" className="btn home-pill">CONOCÉ MÁS</Link>
+      </div>
+    </div>
+
+    {/* Card 3 */}
+    <div className="col-12 col-md-4">
+      <article className="home-card">
+        <div className="home-card-head">
+          <h5>EDUCATIVOS</h5>
+          <p>Viajes pensados para aprender, descubrir y crecer. Una experiencia formativa.</p>
+        </div>
+        <img
+          className="home-card-img"
+          src="/img/home3.png"
+          alt="Viajes educativos"
+        />
+      </article>
+      <div className="text-center mt-2">
+        <Link to="/educativos" className="btn home-pill">CONOCÉ MÁS</Link>
+      </div>
+    </div>
+  </div>
+</section>
+
+        {/* QUIÉNES SOMOS */}
+        <section className="home-about py-5">
+            <div className="container">
+            <h3 className="fw-bold mb-3">QUIÉNES SOMOS</h3>
+            <p className="mb-0 text-body-secondary">
+                Somos Corditur, una agencia con 30 años de experiencia en el sector turístico.
+                Organizamos viajes educativos, de egresados e itinerarios personalizados para grupos e individuales.
+                Nos mueve el compromiso, la organización y la pasión por viajar. Acompañamos cada viaje desde la
+                planificación hasta el regreso, cuidando los detalles para que sea una experiencia única.
+            </p>
+            </div>
+        </section>
+       </main>
     );
-}
+}     

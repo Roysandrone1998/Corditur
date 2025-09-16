@@ -1,0 +1,101 @@
+/* ===== Base ===== */
+html, body { margin: 0; height: 100%; }
+
+/* ===== Fondo AZUL en TODA la pantalla del Home (full-bleed) ===== */
+.home-page{
+  /* cubre el viewport y rompe cualquier wrapper centrado */
+  min-height: 100vh;
+  min-height: 100svh;
+  background: radial-gradient(120% 120% at 100% 0%, #1e5bd7 0%, #3867d6 35%, #204080 80%);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  max-width: none;       /* por si algún global encajona <main> */
+}
+
+/* ===== Hero (transparente; sólo “burbujas”) ===== */
+.home-hero{
+  background: transparent;        /* <- asegurate de quitar el gradiente aquí */
+  position: relative;
+  overflow: hidden;
+}
+.home-hero::after{
+  content: "";
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 60%;
+  background: radial-gradient(40% 40% at 30% 30%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+  pointer-events: none;
+}
+
+/* ===== Card estilo Figma (imagen a full y header superpuesto) ===== */
+.home-card{
+  position: relative;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.08));
+  border: 1px solid rgba(255,255,255,.35);
+  box-shadow: 0 12px 28px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.25);
+  overflow: hidden;
+
+  /* La tarjeta necesita altura para que la imagen absoluta la pueda llenar */
+  height: 530px;              /* desktop: igual que tu Figma */
+  /* Si preferís fluido, podés usar AR en vez de height:
+     aspect-ratio: 348 / 530; height: auto;   (y quitar height:) */
+}
+
+/* Header blanco superpuesto (queda por encima de la foto) */
+.home-card-head{
+  position: absolute; top: 0px; left: 0px; right: 0px;
+  height: 95px;
+  display: grid; place-items: center;
+  text-align: center;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.76));
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 6px 14px rgba(0,0,0,.12);
+  padding: 8px 12px;
+  z-index: 2;                 /* 🔝 por encima de la imagen */
+}
+.home-card-head h5{
+  margin: 0 0 2px;
+  font-weight: 900; letter-spacing: .5px;
+  color: #3A5DAE; text-transform: uppercase;
+}
+.home-card-head p{
+  margin: 0; font-size: .93rem; line-height: 1.2; color: #3A5DAE;
+}
+
+/* Imagen a full dentro del card */
+.home-card-img{
+  position: absolute;         /* 🧷 se pega al contenedor */
+  inset: 0;                   /* top-right-bottom-left: 0 */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* llena sin deformar */
+  z-index: 0;                 /* debajo del header */
+
+  /* limpiamos lo que antes forzaba márgenes/anchos */
+  margin: 0;
+  border-radius: 0;           /* el recorte lo hace .home-card con overflow:hidden */
+  box-shadow: none;
+}
+
+/* Botón pastilla (igual que antes) */
+.home-pill{
+  border-radius: 999px;
+  padding: .6rem 1.1rem;
+  font-weight: 900; letter-spacing: .3px; text-transform: uppercase;
+  background: linear-gradient(180deg, #ffffff, #e9f0ff);
+  color: #1b2b5a; border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 10px 18px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.65);
+}
+.home-pill:hover{ filter: brightness(0.98); }
+
+/* ===== Responsivo: bajamos la altura del card para móvil ===== */
+@media (max-width: 992px){
+  .home-card{ height: 420px; }
+}
+@media (max-width: 576px){
+  .home-card{ height: 340px; }
+  .home-card-head{ height: 84px; }
+}

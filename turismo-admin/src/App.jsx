@@ -6,14 +6,14 @@ import Egresados from "./pages/Egresados.jsx";
 import Educativos from "./pages/Educativos.jsx";
 import AdminLogin from "./pages/AdminLogin.jsx";
 import Admin from "./pages/Admin.jsx";
-
+import Home from "./pages/Home.jsx"; 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         {/* Layout principal */}
         <Route element={<Main />}>
-          <Route path="/" element={<Navigate to="/internacionales" replace />} />
+          <Route path="/" element={<Home />} />
           <Route path="/internacionales" element={<Internacionales />} />
           <Route path="/nacionales" element={<Nacionales />} />
           <Route path="/egresados" element={<Egresados />} />

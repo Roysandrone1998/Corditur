@@ -1,0 +1,96 @@
+:root{
+  --deep:#253C70;
+  --mid:#3A5DAE;
+  --light:#7BA3FF;
+  --w:#fff;
+}
+
+/* Fondo azul EN TODA LA PÁGINA */
+.edu2-page{
+  background: radial-gradient(120% 120% at 100% 0%, #1E5BD7 0%, #3867D6 35%, #204080 80%);
+  min-height: 100dvh;
+  color: var(--w);
+}
+
+/* Título + párrafo */
+.edu2-hero{ padding: 56px 0 20px; }
+.edu2-title{
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: .6px;
+  font-size: clamp(2rem, 2.2vw + 1rem, 3rem);
+}
+.edu2-text{
+  max-width: 920px;
+  margin: 0 auto;
+  line-height: 1.35;
+  opacity: .96;
+}
+
+/* Carrusel */
+.edu2-gallery{ padding: 10px 0 40px; }
+.edu2-carousel{
+  position: relative;
+  width: 100%;
+  max-width: 1094px;         /* como en tu mock */
+  margin: 14px auto 22px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.35);
+  box-shadow: 0 14px 28px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.25);
+}
+.edu2-slide{
+  display: block;
+  width: 100%;
+  height: 520px;             /* ajustá a gusto */
+  object-fit: cover;
+}
+
+/* Flechas */
+.edu2-nav{
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 36px; height: 36px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: #fff;
+  color: #0f1f4a;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 6px 14px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.6);
+  font-size: 22px; font-weight: 900;
+}
+.edu2-nav--left{ left: 14px; }
+.edu2-nav--right{ right: 14px; }
+
+/* Descargas */
+.edu2-downloads{ margin-top: 8px; }
+.edu2-dl-title{
+  margin: 6px 0 12px;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: .6px;
+}
+.edu2-dl-row{
+  display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+}
+.edu2-pill{
+  display: inline-block;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: .3px;
+  background: linear-gradient(180deg, #ffffff, #e9f0ff);
+  color:#0f1f4a;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow: 0 8px 16px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.65);
+}
+
+/* Responsive */
+@media (max-width: 992px){
+  .edu2-slide{ height: 420px; }
+}
+@media (max-width: 576px){
+  .edu2-slide{ height: 320px; }
+  .edu2-nav{ width: 32px; height: 32px; font-size: 20px; }
+}
