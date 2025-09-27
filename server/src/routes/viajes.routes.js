@@ -63,7 +63,7 @@ router.post("/", requireAuth, upload.single("pdf"), async (req, res) => {
     const {
       destino,
       descripcion,
-      categoria,       // nacional | internacional | egresados | educativos
+      categoria,       // nacional | internacional | educativos
       fecha_inicio,    // ISO string (YYYY-MM-DD)
       fecha_fin        // ISO string (YYYY-MM-DD)
     } = req.body;

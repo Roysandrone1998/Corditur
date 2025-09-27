@@ -17,7 +17,7 @@ const ViajeSchema = new mongoose.Schema({
   // 👇 la sección donde va a aparecer
   categoria: {
     type: String,
-    enum: ['internacional', 'nacional', 'egresados', 'educativos'],
+    enum: ['internacional', 'nacional', 'educativos'],
     default: 'internacional',
     index: true
   },

@@ -4,9 +4,9 @@ import "../css/educativos.css";
 
 const IMAGENES = [
   // Poné 1 o más imágenes en /public/images/educativos/
-    "/images/educativos/1.jpg",
-    // "/images/educativos/2.jpg",
-    // "/images/educativos/3.jpg",
+      "/img/individuales1.png",
+   "/img/individuales2.png",
+   "/img/individuales3.png"
     ];
 
     export default function EducativosHome() {
@@ -16,7 +16,7 @@ const IMAGENES = [
     const next = () => setIdx((v) => (v + 1) % IMAGENES.length);
 
     return (
-        <main className="edu2-page">
+        <main className="edu2-page bg-pattern-lg">
         {/* Título + texto */}
         <section className="edu2-hero">
             <div className="container text-center">

@@ -1,21 +1,5 @@
-/* ===== Base ===== */
-html, body { margin: 0; height: 100%; }
-
-/* ===== Fondo AZUL en TODA la pantalla del Home (full-bleed) ===== */
-.home-page{
-  /* cubre el viewport y rompe cualquier wrapper centrado */
-  min-height: 100vh;
-  min-height: 100svh;
-  background: radial-gradient(120% 120% at 100% 0%, #1e5bd7 0%, #3867d6 35%, #204080 80%);
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  max-width: none;       /* por si algún global encajona <main> */
-}
-
-/* ===== Hero (transparente; sólo “burbujas”) ===== */
 .home-hero{
-  background: transparent;        /* <- asegurate de quitar el gradiente aquí */
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
@@ -28,7 +12,7 @@ html, body { margin: 0; height: 100%; }
   pointer-events: none;
 }
 
-/* ===== Card estilo Figma (imagen a full y header superpuesto) ===== */
+/* ===== Card estilo Figma ===== */
 .home-card{
   position: relative;
   border-radius: 22px;
@@ -36,54 +20,30 @@ html, body { margin: 0; height: 100%; }
   border: 1px solid rgba(255,255,255,.35);
   box-shadow: 0 12px 28px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.25);
   overflow: hidden;
-
-  /* La tarjeta necesita altura para que la imagen absoluta la pueda llenar */
-  height: 530px;              /* desktop: igual que tu Figma */
-  /* Si preferís fluido, podés usar AR en vez de height:
-     aspect-ratio: 348 / 530; height: auto;   (y quitar height:) */
+  height: 530px;
 }
-
-/* Header blanco superpuesto (queda por encima de la foto) */
 .home-card-head{
-  position: absolute; top: 0px; left: 0px; right: 0px;
-  height: 95px;
-  display: grid; place-items: center;
-  text-align: center;
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 95px; display: grid; place-items: center; text-align: center;
   border-radius: 16px;
   background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.76));
   border: 1px solid rgba(0,0,0,.06);
   box-shadow: 0 6px 14px rgba(0,0,0,.12);
-  padding: 8px 12px;
-  z-index: 2;                 /* 🔝 por encima de la imagen */
+  padding: 8px 12px; z-index: 2;
 }
 .home-card-head h5{
   margin: 0 0 2px;
-  font-weight: 900; letter-spacing: .5px;
-  color: #3A5DAE; text-transform: uppercase;
+  font-weight: 900; letter-spacing: .5px; color: #3A5DAE; text-transform: uppercase;
 }
-.home-card-head p{
-  margin: 0; font-size: .93rem; line-height: 1.2; color: #3A5DAE;
-}
+.home-card-head p{ margin: 0; font-size: .93rem; line-height: 1.2; color: #3A5DAE; }
 
-/* Imagen a full dentro del card */
 .home-card-img{
-  position: absolute;         /* 🧷 se pega al contenedor */
-  inset: 0;                   /* top-right-bottom-left: 0 */
-  width: 100%;
-  height: 100%;
-  object-fit: cover;          /* llena sin deformar */
-  z-index: 0;                 /* debajo del header */
-
-  /* limpiamos lo que antes forzaba márgenes/anchos */
-  margin: 0;
-  border-radius: 0;           /* el recorte lo hace .home-card con overflow:hidden */
-  box-shadow: none;
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 0; margin: 0; border-radius: 0; box-shadow: none;
 }
 
-/* Botón pastilla (igual que antes) */
 .home-pill{
-  border-radius: 999px;
-  padding: .6rem 1.1rem;
+  border-radius: 999px; padding: .6rem 1.1rem;
   font-weight: 900; letter-spacing: .3px; text-transform: uppercase;
   background: linear-gradient(180deg, #ffffff, #e9f0ff);
   color: #1b2b5a; border: 1px solid rgba(0,0,0,.08);
@@ -91,11 +51,34 @@ html, body { margin: 0; height: 100%; }
 }
 .home-pill:hover{ filter: brightness(0.98); }
 
-/* ===== Responsivo: bajamos la altura del card para móvil ===== */
-@media (max-width: 992px){
-  .home-card{ height: 420px; }
+/* Quiénes somos */
+.home-about-header h3{ color: #fff; letter-spacing: .3px; }
+.home-social{ display: flex; gap: 10px; }
+.hs-btn{
+  width: 36px; height: 36px; border-radius: 50%;
+  display: grid; place-items: center;
+  color: #1b2b5a; text-decoration: none; background: #fff;
+  border: 1px solid rgba(0,0,0,.12); box-shadow: 0 4px 12px rgba(0,0,0,.10);
+  transition: transform .12s ease, box-shadow .12s ease;
 }
+.hs-btn:hover{ transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.14); }
+
+.home-about-card{
+  max-width: 100%;
+  padding: 14px 18px; border-radius: 18px;
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 10px 24px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.55);
+}
+.home-about-card p{ color: #1a244a; line-height: 1.35; }
+
+/* Responsivo */
+@media (max-width: 992px){ .home-card{ height: 420px; } }
 @media (max-width: 576px){
   .home-card{ height: 340px; }
   .home-card-head{ height: 84px; }
+  .home-social{ gap: 8px; }
+  .hs-btn{ width: 34px; height: 34px; }
+  .home-about-card{ padding: 12px 14px; }
 }

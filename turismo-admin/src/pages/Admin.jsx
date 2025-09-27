@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 const CATEGORIAS = [
   { value: "nacional", label: "VIAJES NACIONALES" },
   { value: "internacional", label: "VIAJES INTERNACIONALES" },
-  { value: "egresados", label: "EGRESADOS" },
   { value: "educativos", label: "EDUCATIVOS" },
 ];
 

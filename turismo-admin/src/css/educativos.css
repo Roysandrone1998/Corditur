@@ -4,14 +4,24 @@
   --light:#7BA3FF;
   --w:#fff;
 }
+html, body { margin: 0; height: 100%; }
 
 /* Fondo azul EN TODA LA PÁGINA */
 .edu2-page{
-  background: radial-gradient(120% 120% at 100% 0%, #1E5BD7 0%, #3867D6 35%, #204080 80%);
-  min-height: 100dvh;
+  min-height: 100svh;
   color: var(--w);
+  position: relative;
+  isolation: isolate;             /* aísla el z-index del pseudo */
 }
 
+/* Pintamos el fondo a pantalla completa detrás del contenido */
+.edu2-page::before{
+  content:"";
+  position: fixed;                /* cubre viewport sin scroll lateral */
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(120% 120% at 100% 0%, #1E5BD7 0%, #3867D6 35%, #204080 80%);
+}
 /* Título + párrafo */
 .edu2-hero{ padding: 56px 0 20px; }
 .edu2-title{

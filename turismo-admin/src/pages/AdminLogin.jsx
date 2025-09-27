@@ -24,9 +24,9 @@ export default function AdminLogin() {
       <h3>Login administrador</h3>
       <form onSubmit={onSubmit} className="card p-3">
         <input className="form-control mb-2" placeholder="Email"
-               value={email} onChange={(e)=>setEmail(e.target.value)} />
+                value={email} onChange={(e)=>setEmail(e.target.value)} />
         <input type="password" className="form-control mb-2" placeholder="Contraseña"
-               value={password} onChange={(e)=>setPassword(e.target.value)} />
+                value={password} onChange={(e)=>setPassword(e.target.value)} />
         {msg && <div className="alert alert-danger py-2">{msg}</div>}
         <button className="btn btn-primary">Ingresar</button>
       </form>

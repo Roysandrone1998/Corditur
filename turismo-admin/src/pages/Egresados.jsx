@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import "../css/egresados.css";
-import CategoryList from "../components/CategoryList.jsx";
+
 
 export default function EgresadosHome() {
   // Slides del carrusel inferior (cargá tus rutas reales)
@@ -177,8 +177,7 @@ export default function EgresadosHome() {
         </div>
       </section>
 
-      {/* Paquetes / productos */}
-      <CategoryList categoria="egresados" />
+    
     </main>
   );
 }

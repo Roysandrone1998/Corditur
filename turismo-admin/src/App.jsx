@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Main from "./layout/Main.jsx";
-import Internacionales from "./pages/Internacionales.jsx";
+import Individuales from "./pages/Individuales.jsx";
 import Nacionales from "./pages/Nacionales.jsx";
 import Egresados from "./pages/Egresados.jsx";
 import Educativos from "./pages/Educativos.jsx";
@@ -14,7 +14,7 @@ export default function App() {
         {/* Layout principal */}
         <Route element={<Main />}>
           <Route path="/" element={<Home />} />
-          <Route path="/internacionales" element={<Internacionales />} />
+          <Route path="/individuales" element={<Individuales />} />
           <Route path="/nacionales" element={<Nacionales />} />
           <Route path="/egresados" element={<Egresados />} />
           <Route path="/educativos" element={<Educativos />} />

@@ -32,55 +32,109 @@ html, body { margin: 0; height: 100%; }
   opacity: .95;
 }
 
-/* ===== Carruseles (look Figma) ===== */
+.hc-stage{ position: relative; }              /* ancla para la flecha externa */
+.hc-main{ position: relative; }               /* ancla local del card grande */
+
+/* botón izquierda POR FUERA del card grande */
+.hc-prev-out{
+  position: absolute;
+  left: -28px;                                /* fuera del borde */
+  top: 50%; transform: translateY(-50%);
+  width: 56px; height: 56px; border-radius: 50%; border: 0;
+  display: grid; place-items: center;
+  background: #fff; color: #1e2a55; cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.5);
+  z-index: 3;                                 /* sobre el card */
+}
+.hc-prev-out svg{ width: 24px; height: 24px; }
+
+/* ===== card ===== */
 .hc-card{
   position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #0b1b4a; /* fallback bajo la imagen */
+  border-radius: 22px;
+  overflow: hidden;                           /* necesitamos el redondeo */
+  background: #0b1b4a;
   border: 1px solid rgba(255,255,255,.35);
-  box-shadow: 0 14px 26px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.2);
+  box-shadow: 0 16px 28px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.2);
 }
-.hc-img{
-  width: 100%;
-  height: 530px;          /* como en tu captura */
-  object-fit: cover;
-  display: block;
-}
-.hc-card--small .hc-img{
-  height: 530px;          /* preview misma altura que el grande en desktop */
-}
-
+.hc-img{ width: 100%; height: var(--hc-height, 488px); object-fit: cover; display: block; cursor: zoom-in; }
 .hc-gradient{
-  position: absolute; left: 0; right: 0; bottom: 0;
-  height: 35%;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%,
-                                       rgba(0,0,0,.35) 60%,
-                                       rgba(0,0,0,.6) 100%);
+  position: absolute; left:0; right:0; bottom:0; height:36%;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.32) 58%, rgba(0,0,0,.55) 100%);
   pointer-events: none;
 }
 
-/* Botones redondos */
-.hc-btn{
-  position: absolute;
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  border: 0;
-  display: grid; place-items: center;
-  background: rgba(255,255,255,.95);
-  color: #2b2b2b;
-  box-shadow: 0 6px 16px rgba(0,0,0,.18);
-  cursor: pointer;
+/* ===== botón “siguiente” DENTRO del card grande ===== */
+.hc-btn{ position:absolute; width:56px; height:56px; border-radius:50%; border:0; display:grid; place-items:center;
+  background:#fff; color:#1e2a55; cursor:pointer; box-shadow:0 10px 24px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.5); }
+.hc-next{ right: 18px; top: 50%; transform: translateY(-50%); }
+.hc-next-only{ right:18px; bottom:18px; }     /* botón del preview derecho */
+.hc-btn svg{ width:24px; height:24px; }
+
+/* ===== PREVIEW derecho: más chico, centrado y “desaparece” ===== */
+.hc-peek-clip{ overflow: hidden; }            /* recorta lo que se va a la derecha */
+.hc-small{ position: relative; }
+.hc-small .hc-img{ height: var(--hc-small-height, 320px); }
+
+/* quito padding del col a la derecha */
+.hc-small-col{ padding-right: 0 !important; }
+
+/* empujo el preview hasta el borde derecho y recorto lo que sobresale */
+.hc-peek-clip{
+  overflow: hidden;
+  /* come el gutter de la row y el padding del .container */
+  margin-right: calc(-1 * (var(--bs-gutter-x, 1.5rem) / 2));
 }
-.hc-prev{ left: 14px; top: 50%; transform: translateY(-50%); }
-.hc-next{ right: 14px; top: 50%; transform: translateY(-50%); }
-.hc-next-only{ right: 14px; bottom: 14px; }
 
-.hc-btn:active{ transform: scale(.96) translateY(-50%); }
-.hc-card--small .hc-btn:active{ transform: scale(.96); }
+/* muevo la tarjeta a la derecha y la BAJO más */
+.hc-small.shift-right{
+  position: relative;
+  transform: translateX(14%);  /* más a la derecha; probá 12–16% */
+  top: 26px;                   /* la baja (subí/bajá a gusto) */
+}
 
-/* Responsive */
+/* fade más marcado para fundirse con el borde */
+.hc-small.fade-right{
+  -webkit-mask-image: linear-gradient(to right, #000 70%, transparent 100%);
+          mask-image: linear-gradient(to right, #000 70%, transparent 100%);
+}
+
+/* aseguro clic del botón por encima de la imagen */
+.hc-btn{ z-index: 15; }
+/* responsive: oculto preview en móvil */
 @media (max-width: 991.98px){
-  .hc-img{ height: 320px; }
-  .hc-card--small{ display: none; } /* ocultamos preview en móvil */
+  .hc-small-col{ display:none !important; }
+  .hc-prev-out{ left: 6px; }                  /* no la mandamos tan afuera en mobile */
+}
+
+/* ===== LIGHTBOX ===== */
+.lb-overlay{
+  position: fixed; inset: 0;
+  background: rgba(6,16,40,.72);
+  backdrop-filter: blur(2px);
+  display: grid; place-items: center;
+  z-index: 9999;
+}
+.lb-box{
+  position: relative;
+  max-width: min(1100px, 92vw);
+  max-height: 86vh;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 24px 70px rgba(0,0,0,.45);
+  background: #000;
+}
+.lb-img{ max-width: 100%; max-height: 86vh; object-fit: contain; display: block; }
+.lb-close, .lb-prev, .lb-next{
+  position: absolute; width: 52px; height: 52px; border-radius: 50%;
+  border: 0; display: grid; place-items: center; background: #fff; color: #1e2a55;
+  box-shadow: 0 10px 24px rgba(0,0,0,.25); cursor: pointer;
+}
+.lb-close{ top: 12px; right: 12px; }
+.lb-prev{ left: 14px; top: 50%; transform: translateY(-50%); }
+.lb-next{ right: 14px; top: 50%; transform: translateY(-50%); }
+.lb-close svg, .lb-prev svg, .lb-next svg{ width: 22px; height: 22px; }
+.peeking-right{
+  padding-right: 0 !important;
+  position: relative;          /* lo usamos en la opción B también */
 }

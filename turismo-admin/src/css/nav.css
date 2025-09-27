@@ -1,83 +1,131 @@
+/* ========= RESETS BÁSICOS ========= */
+html, body, #root { height: 100%; margin: 0; background: transparent; }
+
+/* ========= VARIABLES GLOBALES ========= */
 :root{
-  --deep:#253C70; --mid:#3A5DAE; --light:#7BA3FF;
+  --deep:#253C70;
+  --mid:#3A5DAE;
+  --light:#7BA3FF;
+  --w:#fff;
+
+  /* Gradiente base de todo el sitio */
+  --bg-grad: radial-gradient(120% 120% at 100% 0%, #1e5bd7 0%, #3867d6 35%, #204080 80%);
+
+  /* Patrón del fondo (AJUSTÁ EL TAMAÑO para que se repita menos) */
+  --pattern-url: url("/img/fondo.png");
+  --tile: clamp(520px, 46vw, 1200px); /* << más grande = menos “baldosas” */
 }
 
-/* BAR superior con logo centrado */
-.navbar-slim{
+/* ========= LÁMINA DE FONDO GLOBAL (corre detrás de TODAS las páginas) ========= */
+.site-bg{
+  position: fixed; inset: 0; z-index: -1;
+  background-image:
+    var(--pattern-url),
+    var(--bg-grad);
+  background-repeat:
+    repeat,
+    no-repeat;
+  background-size:
+    var(--tile) var(--tile),
+    cover;
+  background-position:
+    0 0,
+    center;
+  /* que el fondo “siga” al hacer scroll */
+  background-attachment:
+    fixed,
+    fixed;
+}
+
+/* ========= WRAPPERS DE PÁGINA ========= */
+.page{
+  min-height: 100svh;
+  color: var(--w);
+
+  /* full-bleed: cubre TODO el ancho aunque el layout use containers */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  max-width: none;
+  overflow-x: clip;             /* evita scroll lateral por sombras/desplazados */
   position: relative;
+}
+
+/* Ondas suaves encima del fondo (tipo Figma) */
+.page::before,
+.page::after{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(60% 40% at 30% 30%, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 70%),
+    radial-gradient(50% 35% at 70% 55%, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 72%);
+  pointer-events:none;
+}
+
+/* Variantes rápidas del patrón (opcional, por página) */
+.bg-pattern-lg { --tile: clamp(680px, 60vw, 1400px); } /* aún más grande */
+.bg-pattern-sm { --tile: clamp(380px, 34vw, 820px);  }
+
+/* ========= NAVBAR TRANSPARENTE + LOGO CENTRADO ========= */
+.navbar-slim{
+  position: sticky; top: 0; z-index: 100;
   height: 64px;
   display: flex; align-items: center; justify-content: space-between;
-  background: #3867d6;           /* o usa var(--mid) */
-  z-index: 50;
-}
 
-/* Hamburguesa */
+  /* transparente: deja ver la .site-bg y/o el .page */
+  background: transparent;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+  box-shadow: none; border: 0;
+}
 .btn-hamb{
   width: 40px; height: 28px; border: 0; background: transparent; cursor: pointer;
   display: grid; place-items: center;
 }
-.btn-hamb span{
-  display:block; width:22px; height:2px; background:#fff; margin:3px 0; border-radius:2px;
-}
-
-/* Logo centrado */
+.btn-hamb span{ display:block; width:22px; height:2px; background:#fff; margin:3px 0; border-radius:2px; }
 .logo-centered{ position: absolute; left: 50%; transform: translateX(-50%); display:block; }
 .logo-img{ height: 28px; }
 
-/* --- Buscador (versión final) --- */
-.search-container{
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 250px;                 /* ajustá al ancho del Figma si querés */
-    }
-    .search-input{
-    width: 100%;
-    height: 38px;
-    padding-left: 15px;
-    padding-right: 40px;
-    border: none; outline: none;
-    border-radius: 25px;
-    background-color: #bebebe;
-    }
-    .search-button{
-    position: absolute;
-    right: 8px; top: 50%; transform: translateY(-50%);
-    background: none; border: none; cursor: pointer;
-    color: #000; font-size: 1.2rem;
-    }
-    .lupita{
-    width: 18px; height: 18px;
-    display: inline-grid; place-items: center;
-    background-color: #fff; color:#000;
-    border-radius: 50%;
-    padding: 9px;
-    box-shadow: 0 0 4px rgba(0,0,0,0);
-    margin-right: -1rem;
-    }
+/* Buscador compacto */
+.search-container{ position: relative; display: flex; align-items: center; width: 250px; }
+.search-input{ width: 100%; height: 38px; padding-left: 15px; padding-right: 40px; border: none; outline: none; border-radius: 25px; background-color: #bebebe; }
+.search-button{ position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #000; font-size: 1.2rem; }
+.lupita{ width: 18px; height: 18px; display: inline-grid; place-items: center; background:#fff; color:#000; border-radius: 50%; padding: 9px; margin-right:-1rem; }
 
-    /* Offcanvas izquierdo */
-    .offcanvas-menu{
-    position: fixed; inset: 0 30% 0 0; max-width: 380px;
-    background: linear-gradient(180deg, rgba(37,60,112,.96), rgba(58,93,174,.96));
-    transform: translateX(-100%); transition: transform .25s ease;
-    z-index: 60; color:#fff;
-    box-shadow: 6px 0 24px rgba(0,0,0,.35);
-    }
-    .offcanvas-menu.open{ transform: translateX(0); }
-    @media (max-width: 740px){ .offcanvas-menu{ inset: 0; max-width: none; } }
+/* ========= DRAWER / MENÚ HAMBURGUESA ========= */
+.drawer-overlay{ position: fixed; inset: 0; z-index: 110; pointer-events: none; }
+.drawer-overlay.open{ pointer-events: auto; }
+.drawer-backdrop{ position: absolute; inset: 0; background: rgba(0,0,0,.28); backdrop-filter: blur(1px); opacity: 0; transition: opacity .25s ease; }
+.drawer-overlay.open .drawer-backdrop{ opacity: 1; }
 
-    .offcanvas-inner{ padding: 16px; }
-    .close-x{
-    background: #fff; color:#1b2b5a; border: none; width: 36px; height: 36px; border-radius: 50%;
-    font-size: 22px; font-weight: 900; line-height: 1; cursor: pointer;
-    }
+.drawer-card{
+  position: absolute; top: 18px; left: 12px;
+  width: min(487px, calc(100% - 32px));
+  background: #fff; color:#1b2b5a;
+  border-radius: 20px; border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 14px 40px rgba(0,0,0,.25);
+  transform: translateY(-8px) scale(.98);
+  opacity: 0; transition: transform .28s ease, opacity .28s ease;
+}
+.drawer-overlay.open .drawer-card{ transform:none; opacity:1; }
+.drawer-head{ display:flex; align-items:center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid rgba(0,0,0,.06); }
+.drawer-badge{ height: 28px; }
+.drawer-close{ width:36px; height:36px; border:0; border-radius:50%; background:#f2f5ff; color:#1b2b5a; font-size:22px; font-weight:900; line-height:1; cursor:pointer; box-shadow:0 2px 10px rgba(0,0,0,.08); }
 
-    .menu-list{ list-style:none; padding: 12px 0 0; margin: 0; }
-    .menu-link{
-    display:block; padding: 12px 6px; color:#fff; text-decoration:none; font-weight:800; letter-spacing:.3px;
-    }
-    .menu-link.active{ color:#fff; position:relative; }
-    .menu-link.active::after{
-    content:""; position:absolute; left:0; right:0; bottom:-4px; height:3px; border-radius:3px; background:#fff;
-    }
+.drawer-list{ list-style:none; padding: 6px 10px 10px; margin:0; }
+.drawer-link{ position:relative; display:block; padding:14px; color:var(--deep); text-decoration:none; text-transform:uppercase; font-weight:900; letter-spacing:.3px; border-radius:12px; }
+.drawer-link:hover{ background: rgba(123,163,255,.10); }
+.drawer-link.active{ color:var(--deep); background: linear-gradient(180deg,#EAF0FF,#DCE7FF); box-shadow: inset 0 1px 0 rgba(255,255,255,.7); }
+
+.drawer-section{ padding: 6px 16px 0; margin-top: 4px; color: var(--deep); font-weight: 900; text-transform: uppercase; letter-spacing:.3px; }
+.drawer-social{ display:flex; gap:12px; padding: 10px 16px 16px; }
+.drawer-social a{ width:36px; height:36px; border-radius:50%; display:grid; place-items:center; color:var(--deep); text-decoration:none; background:#fff; border:1px solid rgba(0,0,0,.12); box-shadow:0 4px 10px rgba(0,0,0,.08); }
+.drawer-social a:hover{ transform: translateY(-1px); }
+
+@media (max-width: 640px){
+  .drawer-card{ top: 78px; left: 12px; width: calc(100% - 24px); }
+}
+
+/* ========= UTILIDADES ========= */
+/* Para que el carrusel “toque” el borde derecho (opcional) */
+.peeking-right{ padding-right: 0 !important; position: relative; }
+@media (min-width: 992px){ .peeking-right{ overflow: clip; } }

@@ -8,8 +8,7 @@ export default function Navbar() {
     const navigate = useNavigate();
 
     const items = [
-        { label: "INTERNACIONALES", path: "/internacionales" },
-        { label: "NACIONALES",      path: "/nacionales" },
+        { label: "INDIVIDUALES", path: "/individuales" },
         { label: "EGRESADOS",       path: "/egresados" },
         { label: "EDUCATIVOS",      path: "/educativos" },
         { label: "ADMIN",           path: "/login" },
@@ -53,20 +52,44 @@ export default function Navbar() {
         </nav>
 
         {/* Off-canvas del menú */}
-        <aside className={`offcanvas-menu ${open ? "open" : ""}`} aria-hidden={!open}>
-            <div className="offcanvas-inner">
-            <button className="close-x" onClick={() => setOpen(false)} aria-label="Cerrar">×</button>
-            <ul className="menu-list">
-                {items.map(i => (
-                <li key={i.path}>
-                    <NavLink to={i.path} className={({isActive}) => "menu-link" + (isActive ? " active" : "")} onClick={() => setOpen(false)}>
-                    {i.label}
-                    </NavLink>
-                </li>
-                ))}
-            </ul>
-            </div>
-        </aside>
+        <aside
+  className={`drawer-overlay ${open ? "open" : ""}`}
+  role="dialog"
+  aria-modal={open}
+  aria-label="Menú principal"
+>
+  {/* clic afuera cierra */}
+  <div className="drawer-backdrop" onClick={() => setOpen(false)} />
+
+  <div className="drawer-card" role="document">
+    <div className="drawer-head">
+      {/* mini badge opcional (podés usar tu favicon) */}
+      <img src="/img/logo.png" alt="" className="drawer-badge" />
+      <button className="drawer-close" onClick={() => setOpen(false)} aria-label="Cerrar">×</button>
+    </div>
+
+    <ul className="drawer-list">
+      {items.map(i => (
+        <li key={i.path}>
+          <NavLink
+            to={i.path}
+            onClick={() => setOpen(false)}
+            className={({isActive}) => "drawer-link" + (isActive ? " active" : "")}
+          >
+            {i.label}
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+
+    <div className="drawer-section">QUIENES SOMOS</div>
+    <div className="drawer-social">
+      <a href="https://wa.me/5493430000000" target="_blank" rel="noopener noreferrer"><i className="bi bi-whatsapp"></i></a>
+      <a href="https://www.instagram.com/costanera241" target="_blank" rel="noopener noreferrer"><i className="bi bi-instagram"></i></a>
+      <a href="https://www.facebook.com/costanera241" target="_blank" rel="noopener noreferrer"><i className="bi bi-facebook"></i></a>
+    </div>
+  </div>
+</aside>
         </>
     );
 }
