@@ -22,8 +22,9 @@
 
 /* Íconos arriba derecha (sin chips, solo ícono) */
 .footer-social{
-  position:absolute; top:8px; right:12px;
-  display:flex; gap:12px; list-style:none; margin:0; padding:0;
+  position:absolute; top: 42px;
+    right: 66px;
+  display:flex; gap:5px; list-style:none; margin:0; padding:0;
 }
 .footer-social a{ color: rgba(255,255,255,.92); font-size:16px; }
 .footer-social a:hover{ color:#fff; }
@@ -35,7 +36,7 @@
   padding-top: 18px;
 }
 
-.footer-logo{ height:26px; display:block; margin-bottom:10px; }
+.footer-logo{ height:60px; display:block; margin-bottom:10px; }
 .footer-address{ margin:0; font-style:normal; opacity:.95; line-height:1.2; }
 
 .f-contact{ text-align:center; }

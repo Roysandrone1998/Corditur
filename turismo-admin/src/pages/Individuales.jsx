@@ -1,6 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Footer from "./Footer.jsx";
 import CategoryList from "../components/CategoryList.jsx";
-import "../css/inter.css"; // tu fondo/hero + las clases hc- del CSS de referencia
+import "../css/inter.css";
 
 function ArrowLeft() {
   return (
@@ -23,103 +25,52 @@ function CloseIcon() {
     </svg>
   );
 }
-function HeroCarousel({
-  images,
-  index,
-  setIndex,
-  onOpenLightbox,
-  height = 488,
-  smallHeight = 320,
 
-  // NUEVO: controles visuales del preview
-  withPreview = true,
-  previewShiftX = 14,   // % hacia la derecha
-  previewTop = 26,      // px hacia abajo
-  fadeStop = 70,        // % donde empieza el fade
-  showRightOnMain = false, // si querés flecha derecha en la card grande
-}) {
+/* Carrusel sin preview; flechas por fuera, visibles completas */
+function HeroCarousel({ images, index, setIndex, onOpenLightbox, height = 488 }) {
   const n = images.length;
-  const nextIdx = useMemo(() => (index + 1) % n, [index, n]);
-
   const prev = () => setIndex(v => (v - 1 + n) % n);
   const next = () => setIndex(v => (v + 1) % n);
 
   return (
-    <div
-      className="hc-stage"
-      style={{ "--hc-height": `${height}px`, "--hc-small-height": `${smallHeight}px` }}
-    >
-      <div className="row g-4 align-items-stretch">
-        {/* principal */}
-        <div className={withPreview ? "col-12 col-lg-8" : "col-12"}>
-          <div className="hc-main">
-            {n > 1 && (
-              <button className="hc-prev-out" onClick={prev} aria-label="Anterior">
-                <ArrowLeft />
-              </button>
-            )}
+    <div className="cr" style={{ "--cr-height": `${height}px` }}>
+      <div className="container cr-inner">
+        <div className="cr-grid">
+          <div className="cr-main">
+            <div className="cr-wrap">
+              {/* Flecha izquierda SOLO si ya avanzó */}
+              {n > 1 && index > 0 && (
+                <button className="cr-arrow cr-prev-out" onClick={prev} aria-label="Anterior">
+                  <ArrowLeft />
+                </button>
+              )}
 
-            <div className="hc-card">
-              <img
-                className="hc-img"
-                src={images[index].src}
-                alt={images[index].alt}
-                onClick={() => onOpenLightbox(index)}
-              />
-              <div className="hc-gradient" />
-              {showRightOnMain && n > 1 && (
-                <button className="hc-btn hc-next" onClick={next} aria-label="Siguiente">
+              {/* Flecha derecha si hay más de una imagen */}
+              {n > 1 && (
+                <button className="cr-arrow cr-next-out" onClick={next} aria-label="Siguiente">
                   <ArrowRight />
                 </button>
               )}
+
+              <article className="cr-card">
+                <img
+                  className="cr-img"
+                  src={images[index].src}
+                  alt={images[index].alt}
+                  onClick={() => onOpenLightbox(index)}
+                />
+                <div className="cr-grad" />
+              </article>
             </div>
           </div>
         </div>
-
-        {/* preview derecha */}
-        {withPreview && (
-          <div className="col-12 col-lg-4 hc-small-col">
-            <div
-              className="hc-peek-clip"
-              style={{ marginRight: "calc(-1 * (var(--bs-gutter-x, 1.5rem) / 2))" }}
-            >
-              <div
-                className="hc-card hc-small fade-right"
-                style={{
-                  transform: `translateX(${previewShiftX}%)`,
-                  top: `${previewTop}px`,
-                  WebkitMaskImage: `linear-gradient(to right, #000 ${fadeStop}%, transparent 100%)`,
-                  maskImage: `linear-gradient(to right, #000 ${fadeStop}%, transparent 100%)`,
-                }}
-              >
-                <img
-                  className="hc-img"
-                  src={images[nextIdx].src}
-                  alt={images[nextIdx].alt}
-                  onClick={() => onOpenLightbox(nextIdx)}
-                />
-                <div className="hc-gradient" />
-                {n > 1 && (
-                  <button
-                    className="hc-btn hc-next-only"
-                    onClick={next}                 // ← ahora sí avanza
-                    aria-label="Siguiente"
-                  >
-                    <ArrowRight />
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
-
 }
 
 export default function Individuales() {
-  // NACIONALES (3 imágenes de prueba)
+  // NACIONALES
   const imagesNac = [
     { src: "/img/individuales1.png", alt: "Nacional 1" },
     { src: "/img/individuales2.png", alt: "Nacional 2" },
@@ -135,9 +86,9 @@ export default function Individuales() {
   ];
   const [i2, setI2] = useState(0);
 
-  // ===== Lightbox (compartido) =====
+  // Lightbox (compartido)
   const [lbOpen, setLbOpen] = useState(false);
-  const [lbList, setLbList] = useState([]);   // nac o int
+  const [lbList, setLbList] = useState([]);
   const [lbIndex, setLbIndex] = useState(0);
 
   const openLbNac = (idx) => { setLbList(imagesNac); setLbIndex(idx); setLbOpen(true); };
@@ -147,7 +98,6 @@ export default function Individuales() {
   const lbPrev = () => setLbIndex(v => (v - 1 + lbList.length) % lbList.length);
   const lbNext = () => setLbIndex(v => (v + 1) % lbList.length);
 
-  // ESC / flechas + bloquear scroll
   useEffect(() => {
     if (!lbOpen) return;
     const onKey = (e) => {
@@ -165,64 +115,65 @@ export default function Individuales() {
   }, [lbOpen, lbList.length]);
 
   return (
-    <main className="inter-page">
+    <main className="page bg-pattern-lg">
       {/* HERO */}
-      <section className="inter-hero text-white text-center py-4">
+      <section className="inter-hero text-white text-center">
         <div className="container">
-          <h1 className="display-5 fw-bold inter-title">¿ESTÁS LISTO PARA TU PRÓXIMO VIAJE?</h1>
-          <p className="lead mb-0 inter-sub">
+          <h1 className="font-tommy w-700">¿ESTÁS LISTO PARA TU<br/> PRÓXIMO VIAJE?</h1>
+          <p className="font-helvetica w-400">
             En Corditur te ayudamos a viajar a donde soñás, con propuestas diseñadas para que disfrutes sin preocuparte por nada.
             Viajás solo, en pareja o con amigos… y nosotros nos ocupamos de todo lo demás.
           </p>
         </div>
       </section>
 
-   {/* CARRUSEL 1 */}
-<section className="container my-4 peeking-right">
-  <HeroCarousel
-    images={imagesNac}
-    index={i1}
-    setIndex={setI1}
-    onOpenLightbox={(idx) => { setLbList(imagesNac); setLbIndex(idx); setLbOpen(true); }}
+      {/* CARRUSEL 1 */}
+      <section className="my-4">
+        <HeroCarousel
+          images={imagesNac}
+          index={i1}
+          setIndex={setI1}
+          onOpenLightbox={(idx) => openLbNac(idx)}
+          height={488}
+        />
+      </section>
 
-    withPreview
-    showRightOnMain={false}
-    previewShiftX={14}   // % hacia la derecha
-    previewTop={26}      // px hacia abajo
-    fadeStop={70}        // % para el fade
-    height={488}
-    smallHeight={320}
-  />
-</section>
-      {/* Lista NACIONALES */}
+      {/* Lista NACIONALES (solo 3) */}
       <section className="container my-4">
-        <CategoryList categoria="nacional" />
+        <CategoryList categoria="nacional" limit={3} />
+        <div className="text-center mt-3" style={{ marginBottom : 72 }}>
+          <Link to="/nacionales" className="font-helvetica w-400 text-white" >
+            VER MAS FECHAS
+          </Link>
+        </div>
       </section>
 
       {/* Título INTERNACIONALES */}
-      <h2 className="text-center fw-bold mb-4 text-white">VIAJES INTERNACIONALES</h2>
+      <h2 className="text-center font-tommy w-700 mb-2 text-white">VIAJES INTERNACIONALES</h2>
+      <p className="text-center text-white font-helvetica w-400">
+        Descubrí el mundo con <strong>Corditur</strong>. Organizamos experiencias únicas a destinos internacionales.
+        Desde Brasil y Uruguay, hasta Europa y más. Vos elegís el lugar, nosotros lo hacemos realidad.
+      </p>
 
-{/* CARRUSEL 2 (mismo look, propio estado) */}
-<section className="container my-4">
-  <HeroCarousel
-    images={imagesInt}
-    index={i2}
-    setIndex={setI2}
-    onOpenLightbox={(idx) => { setLbList(imagesInt); setLbIndex(idx); setLbOpen(true); }}
+      {/* CARRUSEL 2 */}
+      <section className="my-4">
+        <HeroCarousel
+          images={imagesInt}
+          index={i2}
+          setIndex={setI2}
+          onOpenLightbox={(idx) => openLbInt(idx)}
+          height={488}
+        />
+      </section>
 
-    withPreview
-    showRightOnMain={false}
-    previewShiftX={14}
-    previewTop={26}
-    fadeStop={70}
-    height={488}
-    smallHeight={320}
-  />
-</section>
-
-      {/* Lista INTERNACIONALES */}
+      {/* Lista INTERNACIONALES (solo 3) */}
       <section className="container my-4">
-        <CategoryList categoria="internacional" />
+        <CategoryList categoria="internacional" limit={3} />
+        <div className="text-center mt-3 "style={{ marginBottom : 72 }}>
+          <Link to="/internacionales" className="font-helvetica w-400 text-white">
+          VER MAS FECHAS
+          </Link>
+        </div>
       </section>
 
       {/* LIGHTBOX */}
@@ -240,6 +191,8 @@ export default function Individuales() {
           </div>
         </div>
       )}
+
+      <Footer />
     </main>
   );
 }

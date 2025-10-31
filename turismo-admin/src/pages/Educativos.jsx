@@ -1,12 +1,19 @@
 import { useState } from "react";
 import CategoryList from "../components/CategoryList.jsx";
+import Footer from "./Footer.jsx";
 import "../css/educativos.css";
 
 const IMAGENES = [
   // Poné 1 o más imágenes en /public/images/educativos/
-      "/img/individuales1.png",
-   "/img/individuales2.png",
-   "/img/individuales3.png"
+      "/img/e1.png",
+   "/img/e2.png",
+   "/img/e3.png",
+   "/img/e4.png",
+   "/img/e5.png",
+   "/img/e6.png",
+   "/img/e7.png",
+   "/img/e8.png",
+   "/img/e9.png"
     ];
 
     export default function EducativosHome() {
@@ -20,8 +27,8 @@ const IMAGENES = [
         {/* Título + texto */}
         <section className="edu2-hero">
             <div className="container text-center">
-            <h1 className="edu2-title">EDUCATIVOS</h1>
-            <p className="edu2-text">
+            <h1 className="font-tommy w-800">EDUCATIVOS</h1>
+            <p className=" font-helvetica w-200">
                 Los viajes educativos son una oportunidad para aprender, descubrir y
                 crecer fuera del aula. En <strong>Corditur</strong> organizamos salidas
                 escolares con propuestas seguras, bien planificadas y con
@@ -61,21 +68,22 @@ const IMAGENES = [
             </div>
 
             <div className="edu2-downloads text-center">
-                <h3 className="edu2-dl-title">DESCARGA TODO LO NECESARIO</h3>
+                <h3 className="font-tommy w-700">DESCARGA TODO LO NECESARIO</h3>
                 <div className="edu2-dl-row">
-                <a className="edu2-pill" href="/pdfs/ficha-medica.pdf" download>
+                <a className="edu2-pill font-tommy w-700" href="/pdfs/ficha-medica.pdf" download>
                     FICHA MÉDICA
                 </a>
-                <a className="edu2-pill" href="/pdfs/permiso-educativo.pdf" download>
+                <a className="edu2-pill font-tommy w-700" href="/pdfs/permiso-educativo.pdf" download>
                     PERMISO EDUCATIVO
                 </a>
-                <a className="edu2-pill" href="/pdfs/ficha-adhesion.pdf" download>
+                <a className="edu2-pill font-tommy w-700" href="/pdfs/ficha-adhesion.pdf" download>
                     FICHA DE ADHESIÓN
                 </a>
                 </div>
             </div>
             </div>
         </section>
+          <Footer />
         </main>
     );
 }

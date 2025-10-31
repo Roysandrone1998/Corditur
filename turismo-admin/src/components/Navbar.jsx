@@ -44,10 +44,11 @@ export default function Navbar() {
                 value={term}
                 onChange={(e) => setTerm(e.target.value)}
             />
-            <button className="search-button" type="submit" aria-label="Buscar">
-                <i className="bi bi-search lupita"></i>
-                {/* Si preferís imagen: <img src="/img/lupa.svg" alt="" className="lupita" /> */}
-            </button>
+           <button className="search-button" type="submit" aria-label="Buscar">
+    {/* Usamos tu PNG en lugar del icon font */}
+    <img src="/img/lupita.png" alt="" className="lupita" width="42" height="42" />
+    <span className="visually-hidden">Buscar</span>
+  </button>
             </form>
         </nav>
 
@@ -84,9 +85,48 @@ export default function Navbar() {
 
     <div className="drawer-section">QUIENES SOMOS</div>
     <div className="drawer-social">
-      <a href="https://wa.me/5493430000000" target="_blank" rel="noopener noreferrer"><i className="bi bi-whatsapp"></i></a>
-      <a href="https://www.instagram.com/costanera241" target="_blank" rel="noopener noreferrer"><i className="bi bi-instagram"></i></a>
-      <a href="https://www.facebook.com/costanera241" target="_blank" rel="noopener noreferrer"><i className="bi bi-facebook"></i></a>
+       <a
+    href="https://wa.me/5493430000000"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="WhatsApp"
+    className="drawer-icon"
+  >
+    <img src="/img/wspazul.png" alt="" className="drawer-icon-img" />
+    <span className="visually-hidden">WhatsApp</span>
+  </a>
+
+  <a
+    href="https://www.instagram.com/corditur"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram"
+    className="drawer-icon"
+  >
+    <img src="/img/instaazul.png" alt="" className="drawer-icon-img" />
+    <span className="visually-hidden">Instagram</span>
+  </a>
+
+  <a
+    href="https://www.facebook.com/corditur"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Facebook"
+    className="drawer-icon"
+  >
+    <img src="/img/faceazul.png" alt="" className="drawer-icon-img" />
+    <span className="visually-hidden">Facebook</span>
+  </a>
+   <a
+    href="https://www.instagram.com/corditur"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram"
+    className="drawer-icon"
+  >
+    <img src="/img/instaceleste.png" alt="" className="drawer-icon-img" />
+    <span className="visually-hidden">Instagram</span>
+  </a>
     </div>
   </div>
 </aside>

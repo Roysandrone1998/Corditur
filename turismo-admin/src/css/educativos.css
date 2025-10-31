@@ -1,49 +1,27 @@
-:root{
-  --deep:#253C70;
-  --mid:#3A5DAE;
-  --light:#7BA3FF;
-  --w:#fff;
-}
-html, body { margin: 0; height: 100%; }
 
-/* Fondo azul EN TODA LA PÁGINA */
+/* Página sin FONDOS ni stacking context especiales */
 .edu2-page{
   min-height: 100svh;
   color: var(--w);
-  position: relative;
-  isolation: isolate;             /* aísla el z-index del pseudo */
+  position: relative;      /* OK para posicionar hijos si hace falta */
+  /* ❌ NO aislar ni crear stacking context que compita con la navbar */
+  /* isolation: isolate; */
+  /* z-index: auto;  (implícito) */
 }
 
-/* Pintamos el fondo a pantalla completa detrás del contenido */
-.edu2-page::before{
-  content:"";
-  position: fixed;                /* cubre viewport sin scroll lateral */
-  inset: 0;
-  z-index: -1;
-  background: radial-gradient(120% 120% at 100% 0%, #1E5BD7 0%, #3867D6 35%, #204080 80%);
-}
+/* ❌ Eliminamos el pseudo que pintaba un gradiente fijo detrás */
+ /* .edu2-page::before{ ... }  — BORRADO */
+
 /* Título + párrafo */
 .edu2-hero{ padding: 56px 0 20px; }
-.edu2-title{
-  margin: 0 0 8px;
-  text-transform: uppercase;
-  font-weight: 900;
-  letter-spacing: .6px;
-  font-size: clamp(2rem, 2.2vw + 1rem, 3rem);
-}
-.edu2-text{
-  max-width: 920px;
-  margin: 0 auto;
-  line-height: 1.35;
-  opacity: .96;
-}
+
 
 /* Carrusel */
 .edu2-gallery{ padding: 10px 0 40px; }
 .edu2-carousel{
   position: relative;
   width: 100%;
-  max-width: 1094px;         /* como en tu mock */
+  max-width: 1094px;
   margin: 14px auto 22px;
   border-radius: 20px;
   overflow: hidden;
@@ -53,7 +31,7 @@ html, body { margin: 0; height: 100%; }
 .edu2-slide{
   display: block;
   width: 100%;
-  height: 520px;             /* ajustá a gusto */
+  height: 520px;
   object-fit: cover;
 }
 

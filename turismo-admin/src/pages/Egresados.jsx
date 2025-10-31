@@ -1,8 +1,14 @@
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
+import Footer from "./Footer.jsx";
 import "../css/egresados.css";
 
-
 export default function EgresadosHome() {
+  // Fondo exclusivo para esta página (incluye zona de la navbar)
+ useEffect(() => {
+    document.body.classList.add("bg-egresados");
+    return () => document.body.classList.remove("bg-egresados");
+  }, []);
+
   // Slides del carrusel inferior (cargá tus rutas reales)
   const gallery = [
     { src: "/images/egresados/1.jpg", alt: "Egresados 1" },
@@ -10,7 +16,6 @@ export default function EgresadosHome() {
     { src: "/images/egresados/3.jpg", alt: "Egresados 3" },
   ];
   const [gIdx, setGIdx] = useState(0);
-  const gNext = useMemo(() => (gIdx + 1) % gallery.length, [gIdx, gallery.length]);
   const prevG = () => setGIdx(i => (i - 1 + gallery.length) % gallery.length);
   const nextG = () => setGIdx(i => (i + 1) % gallery.length);
 
@@ -20,15 +25,19 @@ export default function EgresadosHome() {
       <section className="eg-hero">
         <div className="container">
           <div className="eg-hero-card">
-            <img className="eg-hero-img" src="/img/egresadosportada.png" alt="Egresados disfrutando" />
+            <img
+              className="eg-hero-img"
+              src="/img/egresadosportada.png"
+              alt="Egresados disfrutando"
+            />
             {/* PNG superpuesto (reemplaza “It’s fun”) */}
             <img className="eg-sticker" src="/img/fun.png" alt="" aria-hidden="true" />
-            <h2 className="eg-hero-mid">
+            <h2 className="eg-hero-mid font-tommy w-700">
               ¡LLEGÓ EL MOMENTO DE CELEBRAR
               <br />
               EL FIN DE LA PRIMARIA!
             </h2>
-            <div className="eg-hero-bottom">
+            <div className="eg-hero-bottom font-helvetica w-400">
               Juegos, aventuras, naturaleza y nuevos recuerdos para toda la vida.
               En Corditur organizamos todo para que los chicos disfruten al máximo,
               con la seguridad y el acompañamiento que las familias necesitan.
@@ -40,19 +49,16 @@ export default function EgresadosHome() {
       {/* TÍTULO + BLOQUES */}
       <section className="eg-content">
         <div className="container">
-          <h3 className="eg-title">¿QUÉ INCLUYE EL VIAJE?</h3>
+          <h3 className=" font-tommy w-700 hh3">¿QUÉ INCLUYE EL VIAJE?</h3>
 
           {/* TRANSPORTE */}
           <article className="eg-block">
             <span className="eg-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M4 15V9a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6M4 15h16M7 18a1.5 1.5 0 1 0 0-3m10 3a1.5 1.5 0 1 0 0-3"
-                  fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <img src="/img/egre1.png" alt="" className="eg-icon-img" width="28" height="28" loading="lazy" />
             </span>
-            <div className="eg-texts">
-              <h4>TRANSPORTE</h4>
-              <p>
+            <div className="">
+              <h4 className="font-tommy w-500">TRANSPORTE</h4>
+              <p className=" font-helvetica w-400">
                 Ómnibus modernos y seguros con control satelital, toilette, butacas semicama,
                 aire acondicionado, calefacción, pantalla LCD y servicio a bordo. Conductores
                 capacitados en primeros auxilios y situaciones de emergencia.
@@ -63,31 +69,25 @@ export default function EgresadosHome() {
           {/* COMIDAS */}
           <article className="eg-block">
             <span className="eg-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M4 3v8a3 3 0 0 0 3 3V3m4 0v11a3 3 0 0 0 3 3V3m6 0v11a3 3 0 0 1-3 3"
-                  fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <img src="/img/egre2.png" alt="" className="eg-icon-img" width="28" height="28" loading="lazy" />
             </span>
-            <div className="eg-texts">
-              <h4>COMIDAS</h4>
-              <p>Uno de los aspectos más valorados por quienes viajan con Corditur es la calidad de las comidas.</p>
-              <p>El viaje incluye pensión completa: desayuno, almuerzo, merienda, cena y trasnoche.</p>
-              <p>Ofrecemos un servicio buffet variado con gaseosas libres de primeras marcas, postres, y agua mineral en hotel y excursiones.</p>
-              <p><strong>Contamos con opciones especiales para celíacos, diabéticos, vegetarianos y otras necesidades.</strong></p>
+            <div className="">
+              <h4 className="font-tommy w-500 ">COMIDAS</h4>
+               <p className=" font-helvetica w-400">Uno de los aspectos más valorados por quienes viajan con Corditur es la calidad de las comidas.</p>
+               <p className=" font-helvetica w-400">El viaje incluye pensión completa: desayuno, almuerzo, merienda, cena y trasnoche.</p>
+               <p className=" font-helvetica w-400">Ofrecemos un servicio buffet variado con gaseosas libres de primeras marcas, postres, y agua mineral en hotel y excursiones.</p>
+               <p><strong className=" font-helvetica w-400">Contamos con opciones especiales para celíacos, diabéticos, vegetarianos y otras necesidades.</strong></p>
             </div>
           </article>
 
           {/* ALOJAMIENTO */}
           <article className="eg-block">
             <span className="eg-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M3 12h18M4 12V7h6a4 4 0 0 1 4 4v1M3 18v-6M21 18v-6"
-                  fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <img src="/img/egre3.png" alt="" className="eg-icon-img" width="28" height="28" loading="lazy" />
             </span>
-            <div className="eg-texts">
-              <h4>ALOJAMIENTO</h4>
-              <p>
+            <div className="">
+              <h4 className="font-tommy w-500">ALOJAMIENTO</h4>
+              <p className=" font-helvetica w-400">
                 Hoteles de categoría con habitaciones privadas, baño privado, TV, aire acondicionado, piscina,
                 WiFi y atención del personal las 24 horas.
               </p>
@@ -97,15 +97,12 @@ export default function EgresadosHome() {
           {/* SEGURIDAD */}
           <article className="eg-block">
             <span className="eg-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"
-                  fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
-              </svg>
+              <img src="/img/egre4.png" alt="" className="eg-icon-img" width="28" height="28" loading="lazy" />
             </span>
-            <div className="eg-texts">
-              <h4>SEGURIDAD</h4>
-              <p>Hoteles con sistema de vigilancia por monitoreo.</p>
-              <p>Incluye todos los seguros reglamentarios exigidos por la Secretaría de Turismo:</p>
+            <div className="">
+              <h4 className="font-tommy w-500">SEGURIDAD</h4>
+              <p className=" font-helvetica w-400">Hoteles con sistema de vigilancia por monitoreo.</p>
+              <p className=" font-helvetica w-400">Incluye todos los seguros reglamentarios exigidos por la Secretaría de Turismo:</p>
               <ul className="eg-sublist">
                 <li>Seguro de vida</li>
                 <li>Seguro por accidentes personales</li>
@@ -118,46 +115,46 @@ export default function EgresadosHome() {
           {/* ASISTENCIA MÉDICA */}
           <article className="eg-block">
             <span className="eg-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-              </svg>
+              <img src="/img/egre5.png" alt="" className="eg-icon-img" width="28" height="28" loading="lazy" />
             </span>
-            <div className="eg-texts">
-              <h4>ASISTENCIA MÉDICA</h4>
-              <p>Cobertura completa con servicio de asistencia médica y traslado de urgencia.</p>
+            <div className="">
+              <h4 className="font-tommy w-500">ASISTENCIA MÉDICA</h4>
+              <p className=" font-helvetica w-400">Cobertura completa con servicio de asistencia médica y traslado de urgencia.</p>
             </div>
           </article>
 
           {/* COORDINACIÓN */}
           <article className="eg-block">
             <span className="eg-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M16 11a4 4 0 1 0-8 0M3 20a7 7 0 0 1 18 0"
-                  fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <img src="/img/egre6.png" alt="" className="eg-icon-img" width="28" height="28" loading="lazy" />
             </span>
-            <div className="eg-texts">
-              <h4>COORDINACIÓN</h4>
-              <p>Equipo Corditur y coordinadores acompañando durante toda la experiencia.</p>
+            <div className="">
+              <h4 className="font-tommy w-500">COORDINACIÓN</h4>
+              <p className=" font-helvetica w-400">Equipo Corditur y coordinadores acompañando durante toda la experiencia.</p>
             </div>
           </article>
 
-          {/* ===== KIT DEL EGRESADO ===== */}
-          <h3 className="eg-subtitle mt-4">KIT DEL EGRESADO</h3>
-          <p className="eg-subdesc">
-            Todo lo que necesitan para disfrutar al máximo: remera, mochila, botellita, cartuchera y más.
-          </p>
+          {/* KIT DEL EGRESADO */}
+          <article className="eg-block">
+            <span className="eg-icon" aria-hidden="true">
+              <img src="/img/egre7.png" alt="" className="eg-icon-img" width="28" height="28" loading="lazy" />
+            </span>
+            <div className="">
+              <h4 className="font-tommy w-500">KIT DEL EGRESADO</h4>
+              <p className=" font-helvetica w-400">Todo lo que necesitan para disfrutar al máximo: remera, mochila, botellita, cartuchera y más.</p>
+            </div>
+          </article>
 
           <div className="eg-kit-card">
-            <img className="eg-kit-img" src="/img/kit-egresado.png" alt="Kit del egresado Corditur" />
+            <img className="eg-kit-img" src="/img/egrekit.png" alt="Kit del egresado Corditur" />
           </div>
 
           <div className="eg-kit-actions">
-            <a className="eg-pill" href="#" role="button">FICHA MEDICA</a>
-            <a className="eg-pill" href="#" role="button">FICHA ADHESIÓN</a>
+            <a className="eg-pill font-tommy w-700" href="#" role="button">FICHA MÉDICA</a>
+            <a className="eg-pill font-tommy w-700" href="#" role="button">FICHA ADHESIÓN</a>
           </div>
 
-          {/* ===== Carrusel inferior (estilo Figma) ===== */}
+          {/* ===== Carrusel inferior ===== */}
           <div className="egc-wrap">
             <div className="egc-card">
               <img className="egc-img" src={gallery[gIdx].src} alt={gallery[gIdx].alt} />
@@ -177,7 +174,7 @@ export default function EgresadosHome() {
         </div>
       </section>
 
-    
+      <Footer />
     </main>
   );
 }
