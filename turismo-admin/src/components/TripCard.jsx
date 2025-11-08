@@ -49,19 +49,19 @@ function TripCard({ v }) {
       <div className="row g-0 align-items-center">
         <div className="col-12 col-md-4 trip-col">
           <div className="trip-label font-helvetica">DESTINO</div>
-          <div className="trip-destino text-uppercase font-tommy w-700">
+          <div className="trip-destino text-uppercase font-tommy w-200">
             {v.destino || "—"}
           </div>
         </div>
 
-        <div className="col-12 col-md-3 mt-3 mt-md-0">
+        <div className="col-12 col-md-3">
           <div className="trip-label font-helvetica">FECHA DE SALIDA</div>
-          <div className="trip-fecha font-helvetica w-400">{fmtDM(fechaSalida)}</div>
+          <div className="trip-fecha font-helvetica w-200">{fmtDM(fechaSalida)}</div>
         </div>
 
         <div className="col-12 col-md-5 mt-3 mt-md-0">
           <div className=" font-helvetica">DESCRIPCIÓN</div>
-          <div className="trip-desc font-helvetica w-400">{v.descripcion || "—"}</div>
+          <div className="trip-desc font-helvetica w-200">{v.descripcion || "—"}</div>
         </div>
       </div>
 

@@ -254,6 +254,7 @@ html, body { font-family: var(--ff-base); }
 
   /* Tipos y jerarquía */
   .trip-label{
+            margin-top: 10px;
     position: relative;
     font-size: .72rem;
     letter-spacing: .08em;
@@ -284,14 +285,25 @@ html, body { font-family: var(--ff-base); }
     right: 8px;
     gap: 8px;
   }
-  .trip-cta{ padding: 6px 12px; font-size: .92rem; }
+  .trip-cta{ margin-right: -10px;
+        padding: 4px 10px;
+        font-size: 0.72rem; }
   .trip-cta .ico{ width: 16px; height: 16px; }
-
+.ico{
+      padding-left: 0px;
+    margin-top: -3px;
+    width: 40px;
+    height: 21px;
+    display: inline-flex
+;
+    margin-right: -6px;
+    margin-left: 7px;
+}
   .trip-pdf{
-    right: 8px;
-    bottom: -12px;
+        font-size: 0.72rem !important;
+        right: -2px;
+        bottom: -12px;
     padding: 6px 14px;
-    font-weight: 700;
-    border-radius: 999px;
+    
   }
 }

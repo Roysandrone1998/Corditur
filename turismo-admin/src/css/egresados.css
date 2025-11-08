@@ -136,11 +136,11 @@ body.bg-egresados{
 /* sublista */
 .eg-sublist{ list-style: none; padding-left: 0; margin: 6px 0 0; }
 .eg-sublist li{
-  position: relative; padding-left: 16px; margin: 2px 0; color: rgba(255,255,255,.95);
+  position: relative; padding-left: 16px; margin: 2px 0; color: rgba(255,255,255,.95);list-style: none;
 }
 .eg-sublist li::before{
   content:""; position:absolute; left:0; top:.58em;
-  width:6px; height:6px; border-radius: 50%; background:#fff;
+  width:6px; height:6px; border-radius: 50%; background:#fff;list-style: none;
 }
 
 /* ===== Responsive ===== */
@@ -152,8 +152,8 @@ body.bg-egresados{
 
 /* ===== KIT ===== */
 .eg-subtitle{
-  font-weight: 900; text-transform: uppercase; letter-spacing: .5px;
-  margin: 18px 0 6px;
+  font-weight: 900;letter-spacing: .5px;
+  margin: 18px 0 6px;list-style: none;
 }
 .eg-subdesc{ margin: 0 0 14px; color: rgba(255,255,255,.92); }
 

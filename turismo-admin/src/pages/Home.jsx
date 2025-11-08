@@ -22,7 +22,7 @@ export default function Home() {
     <div className="col-12 col-md-4">
       <article className="home-card">
         <div className="home-card-head">
-          <h5 className="font-tommy w-700">INDIVIDUALES</h5>
+          <h5 className="font-tommy w-500">INDIVIDUALES</h5>
           <p className="font-helvetica w-200">Viajes únicos. Vos elegís el destino, nosotros lo hacemos posible.</p>
         </div>
         <img
@@ -32,7 +32,7 @@ export default function Home() {
         />
       </article>
       <div className="text-center mt-2">
-        <Link to="/individuales" className="btn home-pill font-tommy w-700">CONOCÉ MÁS</Link>
+        <Link to="/individuales" className="btn home-pill font-tommy w-500">CONOCÉ MÁS</Link>
       </div>
     </div>
 
@@ -40,7 +40,7 @@ export default function Home() {
     <div className="col-12 col-md-4">
       <article className="home-card">
         <div className="home-card-head">
-          <h5 className="font-tommy w-700">EGRESADOS</h5>
+          <h5 className="font-tommy w-500">EGRESADOS</h5>
           <p className="font-helvetica w-200">El viaje que nunca se olvida. Diversión, organización y seguridad.</p>
         </div>
         <img
@@ -50,7 +50,7 @@ export default function Home() {
         />
       </article>
       <div className="text-center mt-2">
-        <Link to="/egresados" className="btn home-pill font-tommy w-700">CONOCÉ MÁS</Link>
+        <Link to="/egresados" className="btn home-pill font-tommy w-500">CONOCÉ MÁS</Link>
       </div>
     </div>
 
@@ -58,7 +58,7 @@ export default function Home() {
     <div className="col-12 col-md-4">
       <article className="home-card">
         <div className="home-card-head">
-          <h5 className="font-tommy w-700">EDUCATIVOS</h5>
+          <h5 className="font-tommy w-500">EDUCATIVOS</h5>
           <p className="font-helvetica w-200">Viajes pensados para aprender, descubrir y crecer. Una experiencia formativa.</p>
         </div>
         <img
@@ -68,7 +68,7 @@ export default function Home() {
         />
       </article>
       <div className="text-center mt-2">
-        <Link to="/educativos" className="btn home-pill font-tommy w-700">CONOCÉ MÁS</Link>
+        <Link to="/educativos" className="btn home-pill font-tommy w-500">CONOCÉ MÁS</Link>
       </div>
     </div>
   </div>
@@ -82,19 +82,19 @@ export default function Home() {
       {/* redes (derecha) */}
       <div className="home-social ms-auto">
         <a className="hs-btn" href="https://wa.me/5493430000000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-  <img src="/img/wspblanco.png" alt="" width="30" height="30" />
+  <img src="/img/wspblanco.png" alt="" width="22" height="22" />
   <span className="visually-hidden">WhatsApp</span>
 </a>
 <a className="hs-btn" href="https://insta" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-  <img src="/img/instablanco.png" alt="" width="30" height="30" />
+  <img src="/img/instablanco.png" alt="" width="22" height="22" />
   <span className="visually-hidden">WhatsApp</span>
 </a>
 <a className="hs-btn" href="https://face" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-  <img src="/img/faceblanco.png" alt="" width="30" height="30" />
+  <img src="/img/faceblanco.png" alt="" width="22" height="22" />
   <span className="visually-hidden">WhatsApp</span>
 </a>
 <a className="hs-btn" href="https://finsta" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-  <img src="/img/instaceleste.png" alt="" width="30" height="30" />
+  <img src="/img/instaceleste.png" alt="" width="22" height="22" />
   <span className="visually-hidden">insta</span>
 </a>
       </div>
@@ -102,7 +102,7 @@ export default function Home() {
 
     {/* tarjeta translúcida */}
     <div className="home-about-card mx-auto">
-      <p className="mb-0">
+      <p className="mb-0 font-helvetica w-200">
         Somos Corditur, una agencia con 30 años de experiencia en el sector turístico.
         Organizamos viajes educativos, viajes de egresados y experiencias personalizadas para grupos o pasajeros individuales.
         Nos mueve el compromiso, la organización y la pasión por viajar. Acompañamos cada viaje desde la planificación

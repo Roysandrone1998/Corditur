@@ -5,15 +5,15 @@ import "../css/educativos.css";
 
 const IMAGENES = [
   // Poné 1 o más imágenes en /public/images/educativos/
-      "/img/e1.png",
-   "/img/e2.png",
-   "/img/e3.png",
-   "/img/e4.png",
-   "/img/e5.png",
-   "/img/e6.png",
-   "/img/e7.png",
-   "/img/e8.png",
-   "/img/e9.png"
+        "/img/e1.png",
+        "/img/e2.png",
+        "/img/e3.png",
+        "/img/e4.png",
+        "/img/e5.png",
+        "/img/e6.png",
+        "/img/e7.png",
+        "/img/e8.png",
+        "/img/e9.png"
     ];
 
     export default function EducativosHome() {
@@ -27,12 +27,12 @@ const IMAGENES = [
         {/* Título + texto */}
         <section className="edu2-hero">
             <div className="container text-center">
-            <h1 className="font-tommy w-800">EDUCATIVOS</h1>
+            <h1 className="font-tommy w-600">EDUCATIVOS</h1>
             <p className=" font-helvetica w-200">
                 Los viajes educativos son una oportunidad para aprender, descubrir y
-                crecer fuera del aula. En <strong>Corditur</strong> organizamos salidas
+                crecer fuera del aula.<br/> En <strong>Corditur</strong> organizamos salidas
                 escolares con propuestas seguras, bien planificadas y con
-                acompañamiento constante, para que cada experiencia sea tan
+                acompañamiento constante,<br/> para que cada experiencia sea tan
                 enriquecedora como inolvidable.
             </p>
             </div>
@@ -68,22 +68,22 @@ const IMAGENES = [
             </div>
 
             <div className="edu2-downloads text-center">
-                <h3 className="font-tommy w-700">DESCARGA TODO LO NECESARIO</h3>
+                <h3 className="font-tommy w-600">DESCARGA TODO LO NECESARIO</h3>
                 <div className="edu2-dl-row">
-                <a className="edu2-pill font-tommy w-700" href="/pdfs/ficha-medica.pdf" download>
+                <a className="edu2-pill font-tommy w-500" href="/pdfs/ficha-medica.pdf" download>
                     FICHA MÉDICA
                 </a>
-                <a className="edu2-pill font-tommy w-700" href="/pdfs/permiso-educativo.pdf" download>
+                <a className="edu2-pill font-tommy w-500" href="/pdfs/permiso-educativo.pdf" download>
                     PERMISO EDUCATIVO
                 </a>
-                <a className="edu2-pill font-tommy w-700" href="/pdfs/ficha-adhesion.pdf" download>
+                <a className="edu2-pill font-tommy w-500" href="/pdfs/ficha-adhesion.pdf" download>
                     FICHA DE ADHESIÓN
                 </a>
                 </div>
             </div>
             </div>
         </section>
-          <Footer />
+            <Footer />
         </main>
     );
 }

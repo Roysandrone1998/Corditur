@@ -72,7 +72,7 @@ function HeroCarousel({ images, index, setIndex, onOpenLightbox, height = 488 })
 export default function Individuales() {
   // NACIONALES
   const imagesNac = [
-    { src: "/img/individuales1.png", alt: "Nacional 1" },
+    { src: "/img/individuales1.jpg", alt: "Nacional 1" },
     { src: "/img/individuales2.png", alt: "Nacional 2" },
     { src: "/img/individuales3.png", alt: "Nacional 3" },
   ];
@@ -149,7 +149,8 @@ export default function Individuales() {
       </section>
 
       {/* Título INTERNACIONALES */}
-      <h2 className="text-center font-tommy w-700 mb-2 text-white">VIAJES INTERNACIONALES</h2>
+      <h2 className="text-center font-tommy w-5
+      00 mb-2 text-white">VIAJES INTERNACIONALES</h2>
       <p className="text-center text-white font-helvetica w-400">
         Descubrí el mundo con <strong>Corditur</strong>. Organizamos experiencias únicas a destinos internacionales.
         Desde Brasil y Uruguay, hasta Europa y más. Vos elegís el lugar, nosotros lo hacemos realidad.
