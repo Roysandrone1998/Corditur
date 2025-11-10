@@ -1,20 +1,48 @@
 import { Router } from "express";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import User from "../models/User.js";
 
 const router = Router();
 
-router.post("/login", (req, res) => {
-  const { email, password } = req.body || {};
-  if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-    const token = jwt.sign({ email, role: "admin" }, process.env.JWT_SECRET, { expiresIn: "1d" });
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: "Email y contraseña son requeridos" });
+    }
+
+    // Busca al usuario en la base de datos
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ error: "Credenciales inválidas" });
+    }
+
+    // Verifica la contraseña
+    const isValid = await bcrypt.compare(password, user.passwordHash);
+    if (!isValid) {
+      return res.status(401).json({ error: "Credenciales inválidas" });
+    }
+
+    // Genera el token
+    const token = jwt.sign(
+      { email: user.email, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
     res.cookie("token", token, {
       httpOnly: true,
       sameSite: "lax",
-      secure: false // en prod con HTTPS => true
+      secure: false
     });
+
     return res.json({ ok: true });
+  } catch (err) {
+    console.error("Error en login:", err);
+    return res.status(500).json({ error: "Error interno del servidor" });
   }
-  return res.status(401).json({ error: "Credenciales inválidas" });
 });
 
 router.post("/logout", (req, res) => {

@@ -5,7 +5,7 @@ export default function Main() {
     return (
         <>
         <Navbar />
-        <main className="container py-4">
+        <main className="container">
             <Outlet />
         </main>
         </>

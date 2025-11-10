@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: corditur-backend
+    env: node
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: MONGODB_URI
+        fromFile: true # Esto significa que leerá la variable desde un archivo .env en Render
+      - key: JWT_SECRET
+        fromFile: true

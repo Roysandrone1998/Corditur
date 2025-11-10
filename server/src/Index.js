@@ -39,4 +39,6 @@ app.use('/api/pdfs', pdfsRoutes); // 👈 monta el router de PDFs
 
 const PORT = process.env.PORT || 4000;
 await connectDB(process.env.MONGO_URI);
-app.listen(PORT, () => console.log(`🚀 API en http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en puerto ${PORT}`);
+});
