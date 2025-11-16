@@ -216,7 +216,10 @@ html, body { font-family: var(--ff-base); }
 
   /* layout general */
   .trip-card{
-    padding: 16px 14px 44px;         /* deja aire y espacio para el PDF abajo */
+    padding: 16px 14px 44px;
+             width: 350px;
+        position: relative;
+        left: 18px;         /* deja aire y espacio para el PDF abajo */
   }
 
   /* Header de la tarjeta en dos columnas + línea central */

@@ -18,10 +18,11 @@
   opacity: 0.95;
 }
 .inter-hero :is(h1) {
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
-  font-size: 4rem;
-  line-height: 1.2;
+     margin-top: 1rem;
+    margin-bottom: 2.5rem;
+    font-size: 4.9rem !important;
+  
+  line-height: 1!important;
   color: var(--bs-heading-color);
   color: inherit; /* opcional */
 }
@@ -192,10 +193,10 @@
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
   }
   .cr-prev-out {
-    left: 12px;
+    left: 18px;
   }
   .cr-next-out {
-    right: 12px;
+            right: 18px;
   }
 
   /* Ajustar el alto de la imagen en móvil */
@@ -214,4 +215,38 @@
 html,
 body {
   overflow-x: hidden;
+}
+@media (max-width: 576px){
+  .inter-hero h1 {
+    font-size: 2rem !important;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .inter-hero p{
+    padding-left: 44px;
+    padding-right: 44px;
+    font-size: 0.8rem !important;
+    line-height: 1.2 !important;
+    margin:0;
+  }
+.cr-card{
+          position: relative;
+        width: 100%;
+        left: 17px;
+}
+.cr-next-out{
+  right: 5px;
+}
+    .cr-prev-out {
+        left: 37px;
+    }
+
+    .h2inter{
+      font-size: 1.8rem!important;
+    }
+    .pinter {
+      font-size: 0.8rem !important;
+        padding-left: 27px;
+        padding-right: 27px;
+    }
 }

@@ -13,7 +13,7 @@ const SEARCHABLE_ITEMS = [
   { label: "Internacionales", path: "/internacionales" },
   { label: "Contacto", path: "/contacto" },
   { label: "Quiénes Somos", path: "/quienes-somos" },
-  { label: "Admin", path: "/login" },
+
 
   // Ejemplo de destinos reales (¡ajusta según tu catálogo!)
   { label: "Bariloche - Invierno 2025", path: "/nacionales/bariloche" },
@@ -89,7 +89,7 @@ export default function Navbar() {
           <input
             type="text"
             className="search-input"
-            placeholder="Buscar viajes, destinos..."
+            placeholder="Buscar"
             value={term}
             onChange={(e) => setTerm(e.target.value)}
             onFocus={() => setIsSearchFocused(true)}
@@ -283,6 +283,9 @@ export default function Navbar() {
             </a>
             <a href="https://www.facebook.com/corditur" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <img src="/img/faceazul.png" alt="" className="drawer-icon-img" />
+            </a>
+            <a href="https://www.instagram.com/corditur" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <img src="/img/instaceleste.png" alt="" className="drawer-icon-img" />
             </a>
           </div>
         </div>

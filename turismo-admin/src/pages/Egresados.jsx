@@ -32,12 +32,12 @@ export default function EgresadosHome() {
             />
             {/* PNG superpuesto (reemplaza “It’s fun”) */}
             <img className="eg-sticker" src="/img/fun.png" alt="" aria-hidden="true" />
-            <h2 className="eg-hero-mid font-tommy w-700">
+            <h2 className="eg-hero-mid font-tommy w-500">
               ¡LLEGÓ EL MOMENTO DE CELEBRAR
               <br />
               EL FIN DE LA PRIMARIA!
             </h2>
-            <div className="eg-hero-bottom font-helvetica w-400">
+            <div className="eg-hero-bottom font-helvetica w-200">
               Juegos, aventuras, naturaleza y nuevos recuerdos para toda la vida.
               En Corditur organizamos todo para que los chicos disfruten al máximo,
               con la seguridad y el acompañamiento que las familias necesitan.
@@ -49,7 +49,7 @@ export default function EgresadosHome() {
       {/* TÍTULO + BLOQUES */}
       <section className="eg-content">
         <div className="container">
-          <h3 className=" font-tommy w-700 hh3">¿QUÉ INCLUYE EL VIAJE?</h3>
+          <h3 className=" font-tommy w-500 hh3">¿QUÉ INCLUYE EL VIAJE?</h3>
 
           {/* TRANSPORTE */}
           <article className="eg-block">
@@ -76,7 +76,7 @@ export default function EgresadosHome() {
                <p className=" font-helvetica w-200">Uno de los aspectos más valorados por quienes viajan con Corditur es la calidad de las comidas.</p>
                <p className=" font-helvetica w-200">El viaje incluye pensión completa: desayuno, almuerzo, merienda, cena y trasnoche.</p>
                <p className=" font-helvetica w-200">Ofrecemos un servicio buffet variado con gaseosas libres de primeras marcas, postres, y agua mineral en hotel y excursiones.</p>
-               <p><strong className=" font-helvetica w-400">Contamos con opciones especiales para celíacos, diabéticos, vegetarianos y otras necesidades.</strong></p>
+               <p><strong className=" font-helvetica w-200">Contamos con opciones especiales para celíacos, diabéticos, vegetarianos y otras necesidades.</strong></p>
             </div>
           </article>
 
@@ -174,7 +174,6 @@ export default function EgresadosHome() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }

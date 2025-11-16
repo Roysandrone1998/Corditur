@@ -80,7 +80,7 @@ export default function Home() {
       <h3 className="font-tommy w-400 ">QUIÉNES SOMOS</h3>
 
       {/* redes (derecha) */}
-      <div className="home-social ms-auto">
+      <div className="home-social ms-auto ">
         <a className="hs-btn" href="https://wa.me/5493430000000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
   <img src="/img/wspblanco.png" alt="" width="22" height="22" />
   <span className="visually-hidden">WhatsApp</span>
@@ -111,7 +111,7 @@ export default function Home() {
     </div>
   </div>
 </section>
-  <Footer />
+ 
        </main>
     );
 }     

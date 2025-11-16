@@ -23,11 +23,12 @@ const IMAGENES = [
     const next = () => setIdx((v) => (v + 1) % IMAGENES.length);
 
     return (
-        <main className="edu2-page bg-pattern-lg">
+        <>
+        <main className="edu2-page ">
         {/* Título + texto */}
         <section className="edu2-hero">
             <div className="container text-center">
-            <h1 className="font-tommy w-600">EDUCATIVOS</h1>
+            <h1 className="font-tommy w-500">EDUCATIVOS</h1>
             <p className=" font-helvetica w-200">
                 Los viajes educativos son una oportunidad para aprender, descubrir y
                 crecer fuera del aula.<br/> En <strong>Corditur</strong> organizamos salidas
@@ -83,7 +84,9 @@ const IMAGENES = [
             </div>
             </div>
         </section>
-            <Footer />
+           
         </main>
+
+        </>
     );
 }

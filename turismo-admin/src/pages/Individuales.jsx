@@ -119,9 +119,9 @@ export default function Individuales() {
       {/* HERO */}
       <section className="inter-hero text-white text-center">
         <div className="container">
-          <h1 className="font-tommy w-700">¿ESTÁS LISTO PARA TU<br/> PRÓXIMO VIAJE?</h1>
-          <p className="font-helvetica w-400">
-            En Corditur te ayudamos a viajar a donde soñás, con propuestas diseñadas para que disfrutes sin preocuparte por nada.
+          <h1 className="font-tommy w-500">¿ESTÁS LISTO PARA TU<br/> PRÓXIMO VIAJE?</h1>
+          <p className="font-helvetica w-200">
+            En Corditur te ayudamos a viajar a donde soñás, con propuestas diseñadas para que disfrutes sin preocuparte por nada.<br/>
             Viajás solo, en pareja o con amigos… y nosotros nos ocupamos de todo lo demás.
           </p>
         </div>
@@ -149,9 +149,8 @@ export default function Individuales() {
       </section>
 
       {/* Título INTERNACIONALES */}
-      <h2 className="text-center font-tommy w-5
-      00 mb-2 text-white">VIAJES INTERNACIONALES</h2>
-      <p className="text-center text-white font-helvetica w-400">
+      <h2 className="text-center font-tommy w-500 mb-2 text-white h2inter">VIAJES INTERNACIONALES</h2>
+      <p className="text-center text-white font-helvetica w-200 pinter">
         Descubrí el mundo con <strong>Corditur</strong>. Organizamos experiencias únicas a destinos internacionales.
         Desde Brasil y Uruguay, hasta Europa y más. Vos elegís el lugar, nosotros lo hacemos realidad.
       </p>
@@ -193,7 +192,7 @@ export default function Individuales() {
         </div>
       )}
 
-      <Footer />
+   
     </main>
   );
 }
