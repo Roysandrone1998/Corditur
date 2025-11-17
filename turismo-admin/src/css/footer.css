@@ -39,8 +39,9 @@
 /* Íconos sociales: arriba-derecha */
 .footer-social {
   position: absolute;
-  top: 33px;
-  right: 45px;
+    top: 62px;
+    
+  right: 43px;
   display: flex;
   gap: 12px;
   list-style: none;
@@ -58,6 +59,8 @@
 
 /* Contenedor principal: flexbox horizontal */
 .footer-content {
+      margin-bottom: -15px;
+
   display: flex;
   justify-content: space-between;
   align-items: start;
@@ -80,7 +83,7 @@
 }
 
 .footer-address {
-      margin-top: 88px;
+      margin-top: 94px;
   line-height: 1;
   text-align: left;
 }
@@ -93,11 +96,15 @@
   align-items: center;
   gap: 4px;
 }
-
+.footer-pow{
+      font-size: 14px;
+        position: relative;
+        top: 26px;
+}
 .footer-phones {
     font-size: 14px;
     position: relative;
-    top: 12px;
+    top: 15px;
     line-height: 17px;
 }
 
@@ -105,7 +112,7 @@
   color: var(--w);
   text-decoration: none;
       position: relative;
-    top:  2px;
+    top:  7px;
   
 }
 .footer-mail:hover {
@@ -132,7 +139,7 @@ margin-right: 8px;
 .footer-powered {
  font-size: 14px;
      position: relative;
-    top: 14px;
+        top: 20px;
 
 }
 @media (max-width: 576px) {
@@ -151,10 +158,9 @@ margin-right: 8px;
           position: absolute;
         font-size: 11px;
                 left: 12px;
-        bottom: 24px;
+        bottom: 25px;
         line-height: 1;
         text-align: left;
-    text-align: left;
 }
 address {
     margin-bottom: 18px;
@@ -169,11 +175,10 @@ address {
         margin-bottom: 14px;
 }
 .footer-pow {
-               font-size: 10px;
-        position: absolute;
-        bottom: -3px;
-        right: 30px;
-        margin-bottom: 14px;
+            position: relative !important;
+    top: -9px;
+    margin-left: 229px;
+    font-size: 10px;
 }
 /* Posicionamos cada bloque con grid-area */
   .f-brand {
@@ -210,7 +215,7 @@ address {
 .footer-phones {
                 right: 14px;
         position: absolute;
-        top: 37px;
+        top: 40px;
         font-size: 11px;
         margin-left: 22px;
         line-height: 11px;
@@ -219,7 +224,7 @@ address {
 .footer-mail {
         position: absolute;
         font-size: 11px;
-        top: 56px;
+        top: 59px;
         right: 14px;
     }
   /* Ajuste de íconos sociales */

@@ -101,7 +101,7 @@ export default function Home() {
     </div>
 
     {/* tarjeta translúcida */}
-    <div className="home-about-card mx-auto">
+    <div className="home-about-card">
       <p className="mb-0 font-helvetica w-200">
         Somos Corditur, una agencia con 30 años de experiencia en el sector turístico.
         Organizamos viajes educativos, viajes de egresados y experiencias personalizadas para grupos o pasajeros individuales.
