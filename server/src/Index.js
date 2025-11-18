@@ -7,10 +7,10 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { connectDB } from './src/config/db.js';
-import authRoutes from './src/routes/auth.routes.js';
-import viajesRoutes from './src/routes/viajes.routes.js';
-import pdfsRoutes from './src/routes/pdfs.routes.js'; // 👈 Asegurate de crear/exportar este archivo
+import { connectDB } from './config/db.js';
+import authRoutes from './routes/auth.routes.js';
+import viajesRoutes from './routes/viajes.routes.js';
+import pdfsRoutes from './routes/pdfs.routes.js'; // 👈 Asegurate de crear/exportar este archivo
 
 const app = express();
 
