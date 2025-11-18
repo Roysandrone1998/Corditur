@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
-import cors from 'cors';
+import cors from 'cors'; // Importado
 import helmet from 'helmet';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
@@ -10,17 +10,33 @@ import { fileURLToPath } from 'url';
 import { connectDB } from './config/db.js';
 import authRoutes from './routes/auth.routes.js';
 import viajesRoutes from './routes/viajes.routes.js';
-import pdfsRoutes from './routes/pdfs.routes.js'; // 👈 Asegurate de crear/exportar este archivo
+import pdfsRoutes from './routes/pdfs.routes.js'; 
 
 const app = express();
 
 app.use(helmet());
 app.use(morgan('dev'));
 
-// ⚠️ CORS con credenciales (para cookies)
+// 🔑 CORRECCIÓN CRÍTICA DE CORS: Usamos una función para manejar múltiples orígenes
+const allowedOrigins = [
+    'http://localhost:5173', // Origen de desarrollo local (Vite/React)
+    process.env.CORS_ORIGIN // Origen de producción (Vercel)
+];
+
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
-  credentials: true
+    origin: (origin, callback) => {
+        // Permitir solicitudes sin 'origin' (ej: Postman, o peticiones del mismo origen)
+        if (!origin) return callback(null, true);
+        
+        // Verificar si el origen solicitante está en la lista de permitidos
+        if (allowedOrigins.includes(origin)) {
+            callback(null, true); // Permitido
+        } else {
+            // Revisa si la URL de producción existe. Si no existe o no coincide, negar.
+            callback(new Error(`Acceso denegado por CORS para el origen: ${origin}`));
+        }
+    },
+    credentials: true
 }));
 
 app.use(express.json());
@@ -35,10 +51,10 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.get('/api/health', (_req, res) => res.json({ ok: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/viajes', viajesRoutes);
-app.use('/api/pdfs', pdfsRoutes); // 👈 monta el router de PDFs
+app.use('/api/pdfs', pdfsRoutes);
 
 const PORT = process.env.PORT || 4000;
 await connectDB();
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en puerto ${PORT}`);
+  console.log(`Servidor corriendo en puerto ${PORT}`);
 });
