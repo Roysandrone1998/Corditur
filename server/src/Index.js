@@ -8,9 +8,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { connectDB } from './config/db.js';
-import authRoutes from './routes/auth.routes.js';
-import viajesRoutes from './routes/viajes.routes.js';
-import pdfsRoutes from './routes/pdfs.routes.js'; 
+import authRoutes from './pdfs/routes/auth.routes.js';
+import viajesRoutes from './pdfs/routes/viajes.routes.js';
+import pdfsRoutes from './pdfs/routes/pdfs.routes.js'; 
 
 const app = express();
 
