@@ -7,10 +7,10 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { connectDB } from './config/db.js';
-import authRoutes from './pdfs/routes/auth.routes.js';
-import viajesRoutes from './pdfs/routes/viajes.routes.js';
-import pdfsRoutes from './pdfs/routes/pdfs.routes.js'; 
+import { connectDB } from '../server/src/config/db.js';
+import authRoutes from '../server/src/routes/auth.routes.js';
+import viajesRoutes from '../server/src/routes/viajes.routes.js';
+import pdfsRoutes from '../server/src/routes/pdfs.routes.js'; 
 
 const app = express();
 
