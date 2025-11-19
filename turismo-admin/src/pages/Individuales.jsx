@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Footer from "./Footer.jsx";
+// 🔑 Importaciones de imágenes (Asume la ruta correcta a tu carpeta de assets)
+import imgInt1 from "../assets/img/4.png"; 
+import imgNac2 from "../assets/img/e3.png";
+import imgNac3 from "../assets/img/e2.png";
+
+
 import CategoryList from "../components/CategoryList.jsx";
 import "../css/inter.css";
-
 function ArrowLeft() {
   return (
     <svg viewBox="0 0 24 24">
@@ -71,19 +75,20 @@ function HeroCarousel({ images, index, setIndex, onOpenLightbox, height = 488 })
 
 export default function Individuales() {
   // NACIONALES
-  const imagesNac = [
-
-    { src: "/img/individuales2.png", alt: "Nacional 2" },
-    { src: "/img/individuales3.png", alt: "Nacional 3" },
-  ];
+ const imagesNac = [
+    // 🔑 CORREGIDO: Usar la variable importada (Vite genera la ruta correcta)
+    { src: imgNac2, alt: "Nacional 2" }, 
+    { src: imgNac3, alt: "Nacional 3" },
+  ];
   const [i1, setI1] = useState(0);
 
   // INTERNACIONALES
-  const imagesInt = [
-    { src: "/img/individuales1.png", alt: "Internacional 1" },
-    { src: "/img/individuales2.png", alt: "Internacional 2" },
-    { src: "/img/individuales3.png", alt: "Internacional 3" },
-  ];
+const imagesInt = [
+    // 🔑 CORREGIDO: Usar la variable importada
+    { src: imgInt1, alt: "Internacional 1" }, 
+    { src: imgNac2, alt: "Internacional 2" },
+    { src: imgNac3, alt: "Internacional 3" },
+  ];
   const [i2, setI2] = useState(0);
 
   // Lightbox (compartido)
