@@ -14,7 +14,7 @@ export async function connectDB() {
             // 🔑 AJUSTE SUGERIDO: Añadir parámetros por si tienes Mongoose antiguo
             useNewUrlParser: true,
             useUnifiedTopology: true,
-           
+            
         });
         console.log('🗄️  MongoDB conectado');
     } catch (err) {
