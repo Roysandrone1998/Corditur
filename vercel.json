@@ -9,7 +9,7 @@
       "src": "turismo-admin/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist"
+        "distDir":"turismo-admin/dist"
       }
     }
   ],
@@ -20,19 +20,19 @@
     },
     {
       "src": "/assets/(.*)",
-      "dest": "turismo-admin/assets/$1"
+      "dest": "turismo-admin/dist/assets/$1"
     },
     {
       "src": "/img/(.*)",
-      "dest": "turismo-admin/img/$1"
+      "dest": "turismo-admin/dist/img/$1"
     },
     {
       "src": "/fonts/(.*)",
-      "dest": "turismo-admin/fonts/$1"
+      "dest": "turismo-admin/dist/fonts/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "turismo-admin/index.html"
+      "dest": "turismo-admin/dist/index.html"
     }
   ]
 }
