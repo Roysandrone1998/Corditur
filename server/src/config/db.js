@@ -10,7 +10,12 @@ export async function connectDB() {
     }
     try {
         mongoose.set('strictQuery', true);
-        await mongoose.connect(uri);
+        await mongoose.connect(uri, {
+            // 🔑 AJUSTE SUGERIDO: Añadir parámetros por si tienes Mongoose antiguo
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+           
+        });
         console.log('🗄️  MongoDB conectado');
     } catch (err) {
         console.error('Error MongoDB:', err.message);

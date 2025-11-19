@@ -72,7 +72,7 @@ function HeroCarousel({ images, index, setIndex, onOpenLightbox, height = 488 })
 export default function Individuales() {
   // NACIONALES
   const imagesNac = [
-    { src: "/img/individuales1.jpg", alt: "Nacional 1" },
+
     { src: "/img/individuales2.png", alt: "Nacional 2" },
     { src: "/img/individuales3.png", alt: "Nacional 3" },
   ];
